@@ -22,8 +22,7 @@ model User {
 
   accounts Account[]
 
-  firstName String?
-  lastName  String?
+  name String?
 
   sessions Session[]
 
@@ -32,4 +31,116 @@ model User {
   lastSeen  DateTime?
 
   workspaces WorkspaceMember[]
+}
+
+enum DeviceType {
+  UNKNOWN
+  PHONE
+  TABLET
+  DESKTOP
+  TV
+}
+
+enum DevicePlatform {
+  IOS
+  ANDROID
+}
+
+model Device {
+  id String @id @default(uuid())
+
+  // Device Details
+  deviceName         String?
+  deviceType         DeviceType
+  deviceYearClass    Int?
+  deviceManufacturer String?
+  deviceModalName    String?
+  deviceOsName       String?
+  deviceOsVersion    String?
+
+  secureDeviceId String  @unique
+  pushToken      String?
+
+  platform      DevicePlatform
+  subscriptions ChannelSubscription[]
+  messages      MessageRecipient[]
+}
+
+model Channel {
+  id          String    @id @default(uuid())
+  externalId  String?
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+
+  name       String
+  willExpire Boolean @default(true)
+
+  subscribers ChannelSubscription[]
+  groups      DeliveryGroupChannel[]
+
+  createdAt DateTime  @default(now())
+  expiresAt DateTime? // Expiration date if no subscribers are created
+}
+
+model ChannelSubscription {
+  id String @id @default(uuid())
+
+  channel   Channel @relation(fields: [channelId], references: [id])
+  device    Device  @relation(fields: [deviceId], references: [id])
+  channelId String
+  deviceId  String
+}
+
+model Message {
+  id          String    @id @default(uuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+
+  title String?
+  body  String?
+  data  Json?
+
+  recipients MessageRecipient[]
+
+  createdAt DateTime @default(now())
+}
+
+model MessageRecipient {
+  id String @id @default(uuid())
+
+  message   Message @relation(fields: [messageId], references: [id])
+  messageId String
+  device    Device  @relation(fields: [deviceId], references: [id])
+  deviceId  String
+}
+
+model DeliveryGroup {
+  id String @id @default(uuid())
+
+  workspaceId   String
+  workspace     Workspace    @relation(fields: [workspaceId], references: [id])
+  applicationId String?
+  application   Application? @relation(fields: [applicationId], references: [id])
+
+  name     String
+  channels DeliveryGroupChannel[]
+}
+
+model DeliveryGroupChannel {
+  id String @id @default(uuid())
+
+  deliveryGroup   DeliveryGroup @relation(fields: [deliveryGroupId], references: [id])
+  deliveryGroupId String
+
+  channel   Channel @relation(fields: [channelId], references: [id])
+  channelId String
+}
+
+model Application {
+  id          String    @id @default(uuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+
+  name   String
+  groups DeliveryGroup[]
 }
