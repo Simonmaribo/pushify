@@ -4,7 +4,7 @@ import { type VariantProps } from 'class-variance-authority'
 
 import { cn, isElementWithChildren, isReactElement } from '@/helpers/utils'
 import { buttonVariants, iconVariants } from './variants'
-import LoadingOld from '../Loading/LoadingOld'
+import LoadingOld from '../Loading'
 
 /* ---------------------------------- Types --------------------------------- */
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &

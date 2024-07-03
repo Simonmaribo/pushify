@@ -1,101 +1,63 @@
-import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+const SIZE = {
+	xs: {
+		size: 20,
+		border: 2,
+	},
+	sm: {
+		size: 30,
+		border: 3,
+	},
+	md: {
+		size: 40,
+		border: 3,
+	},
+	lg: {
+		size: 50,
+		border: 4,
+	},
+	xl: {
+		size: 60,
+		border: 4,
+	},
+}
 
-import { cn } from '@/helpers/utils'
-import { Dots } from './Dots'
-import { Line } from './Line'
-import { Spinner } from './Spinner'
-
-/* ---------------------------------- Types --------------------------------- */
-export type LoadingElement = HTMLDivElement
-export type LoadingProps = React.HTMLAttributes<HTMLDivElement> &
-	VariantProps<typeof loadingVariants>
-
-/* -------------------------------- Variants -------------------------------- */
-export const loadingVariants = cva(
-	'relative inline-flex items-center justify-center border-0',
-	{
-		variants: {
-			color: {
-				primary: 'stroke-gray-100 text-purple-500',
-				secondary: 'stroke-gray-100 text-gray-900',
-			},
-			size: {
-				xxs: 'size-4',
-				xs: 'size-6',
-				sm: 'size-8',
-				md: 'size-12 [--loading-stroke-width:6px]',
-				lg: 'size-14',
-				xl: 'size-16',
-				xxl: 'size-[88px]',
-			},
-			type: {
-				line: '',
-				spinner: '-rotate-45',
-				dots: '',
-			},
-		},
-		defaultVariants: {
-			color: 'primary',
-			size: 'md',
-			type: 'line',
-		},
-	}
-)
-
-/* ------------------------------- Components ------------------------------- */
-const Loading = React.forwardRef<LoadingElement, LoadingProps>((props, ref) => {
-	const {
-		'aria-label': ariaLabel = 'Loading',
-		className,
-		color = 'primary',
-		size = 'md',
-		type = 'line',
-		...otherProps
-	} = props
-
-	let element = null
-
-	switch (type) {
-		case 'line':
-			element = (
-				<Line
-					className="size-full animate-spin will-change-transform"
-					size={size}
-				/>
-			)
-			break
-
-		case 'spinner':
-			element = (
-				<Spinner
-					className="size-full animate-[spin_.6s_ease-in-out_infinite] will-change-transform"
-					size={size}
-				/>
-			)
-			break
-
-		case 'dots':
-			element = (
-				<Dots
-					className="size-full animate-[spin_1.25s_linear_infinite] will-change-transform"
-					size={size}
-				/>
-			)
-			break
+export default function Loading({
+	color = '#7047EB',
+	size = 'md',
+}: {
+	color?: string
+	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+}) {
+	// convert hex to rgba
+	const rgba = (hex: string, alpha: number) => {
+		const r = parseInt(hex.slice(1, 3), 16)
+		const g = parseInt(hex.slice(3, 5), 16)
+		const b = parseInt(hex.slice(5, 7), 16)
+		return `rgba(${r}, ${g}, ${b}, ${alpha})`
 	}
 
 	return (
-		<div
-			ref={ref}
-			aria-label={ariaLabel}
-			className={cn(loadingVariants({ color, size, type }), className)}
-			{...otherProps}
-		>
-			{element}
-		</div>
+		<>
+			<style>{`
+                #loading {
+                    display: inline-block;
+                    width: ${SIZE[size].size}px;
+                    height: ${SIZE[size].size}px;
+                    border: ${SIZE[size].border}px solid ${rgba(color, 0.3)};
+                    border-radius: 50%;
+                    border-top-color: ${color};
+                    animation: spin 800ms linear infinite;
+                    -webkit-animation: spin 800ms linear infinite;
+                }
+                
+                @keyframes spin {
+                    to { -webkit-transform: rotate(360deg); }
+                }
+                @-webkit-keyframes spin {
+                    to { -webkit-transform: rotate(360deg); }
+                }
+            `}</style>
+			<div id="loading" />
+		</>
 	)
-})
-
-Loading.displayName = 'Loading'
-export default Loading
+}

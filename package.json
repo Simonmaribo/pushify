@@ -3,9 +3,19 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "build:web": "turbo build --filter=@pushify/web",
+    "build:api": "turbo build --filter=@pushify/api",
+
     "dev": "turbo dev",
+    "dev:web": "turbo dev --filter=@pushify/web",
+    "dev:api": "turbo dev --filter=@pushify/api",
+    
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+
+    "start": "turbo start",
+    "start:web": "turbo start --filter=@pushify/web",
+    "start:api": "turbo start --filter=@pushify/api"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
