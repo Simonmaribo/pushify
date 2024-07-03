@@ -66,15 +66,3 @@ export function ensureAuthentication(server: Server) {
 		)
 	}
 }
-
-export function ensureSSR(server: Server) {
-	return async (req: Request, res: Response, next: NextFunction) => {
-		const SSR_KEY = req.headers['x-ssr-key']
-		if (SSR_KEY == null)
-			return res.status(401).json({ error: 'Unauthorized' })
-		if (SSR_KEY !== process.env.SSR_KEY)
-			return res.status(401).json({ error: 'Unauthorized' })
-
-		return next()
-	}
-}
