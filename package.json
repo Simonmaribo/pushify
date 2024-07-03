@@ -5,17 +5,16 @@
     "build": "turbo build",
     "build:web": "turbo build --filter=@pushify/web",
     "build:api": "turbo build --filter=@pushify/api",
-
     "dev": "turbo dev",
     "dev:web": "turbo dev --filter=@pushify/web",
     "dev:api": "turbo dev --filter=@pushify/api",
-    
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-
     "start": "turbo start",
     "start:web": "turbo start --filter=@pushify/web",
-    "start:api": "turbo start --filter=@pushify/api"
+    "start:api": "turbo start --filter=@pushify/api",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -29,5 +28,11 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "version": "1.0.0",
+  "dependencies": {
+    "expo": "~51.0.17",
+    "react": "18.2.0",
+    "react-native": "0.74.2"
+  }
 }
