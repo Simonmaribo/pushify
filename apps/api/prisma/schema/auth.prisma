@@ -1,0 +1,49 @@
+model Account {
+    id           Int          @id @default(autoincrement())
+    userId       String
+    user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    provider     AuthProvider
+    oauthId      String?
+    refreshToken String?
+
+    // Used for provider = EMAIL
+    email    String?
+    password String?
+
+    expiresAt DateTime?
+    createdAt DateTime  @default(now())
+
+    @@index([userId])
+}
+
+model EmailVerificationCode {
+    id        Int      @id @default(autoincrement())
+    userId    String   @unique
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    code      String
+    expiresAt DateTime
+    createdAt DateTime @default(now())
+
+    @@index([userId])
+}
+
+enum AuthProvider {
+    EMAIL
+    GOOGLE
+    FACEBOOK
+}
+
+model Session {
+    id     String @id @default(uuid())
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    token  String @unique
+
+    ipAddress String? @db.Text
+    userAgent String? @db.Text
+
+    expiresAt DateTime
+    createdAt DateTime @default(now())
+
+    @@index([userId])
+}

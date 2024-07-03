@@ -1,0 +1,45 @@
+model Workspace {
+    id        String    @id @unique @default(uuid())
+    name      String // Simon's Workspace
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+
+    iconId String?
+
+    members           WorkspaceMember[]
+    memberInvitations WorkspaceInvitation[]
+}
+
+enum WorkspaceRole {
+    OWNER
+    ADMIN
+}
+
+model WorkspaceMember {
+    id          Int           @id @default(autoincrement())
+    workspaceId String
+    workspace   Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+    userId      String
+    user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+    role        WorkspaceRole
+    createdAt   DateTime      @default(now())
+
+    @@unique([workspaceId, userId])
+    @@index([workspaceId])
+    @@index([userId])
+}
+
+model WorkspaceInvitation {
+    id          Int       @id @default(autoincrement())
+    workspaceId String
+    workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+    email String
+    token String @unique
+
+    createdAt DateTime @default(now())
+    expiresAt DateTime
+
+    @@index([workspaceId])
+}
