@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/Geist-Thin.ttf') format('opentype');
+    font-weight: 100;
+}
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/Geist-UltraLight.ttf') format('opentype');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/Geist-Light.ttf') format('opentype');
+    font-weight: 300; /* Medium weight */
+}
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/Geist-Regular.ttf') format('opentype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/Geist-Medium.ttf') format('opentype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/Geist-SemiBold.ttf') format('opentype');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/Geist-Bold.ttf') format('opentype');
+    font-weight: 700; /* Medium weight */
+}
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/Geist-Black.ttf') format('opentype');
+    font-weight: 800;
+}
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/Geist-UltraBlack.ttf') format('opentype');
+    font-weight: 800;
+}
+
+* {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
