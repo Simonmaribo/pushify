@@ -12,7 +12,7 @@ export function secret() {
 export function uuid(...args: any) {
 	if (!args.length) return v4()
 
-	return v5(hash(...args), secret())
+	return v5(hash(...args, secret()), v5.DNS)
 }
 
 export function isUuid(value: string) {
