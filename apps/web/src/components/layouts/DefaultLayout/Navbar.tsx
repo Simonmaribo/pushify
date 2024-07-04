@@ -1,10 +1,10 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar'
 import useWorkspace from '@/hooks/use-workspace'
-import { ChevronsUpDown } from 'lucide-react'
 import WorkspaceDropdown from './WorkspaceDropdown'
+import useUser from '@/hooks/use-user'
 
 export default function Navbar() {
 	const { workspace } = useWorkspace()
+	const { user } = useUser()
 	return (
 		<div className="sticky left-0 right-0 top-0 z-20 border-b border-gray-200 bg-white">
 			<div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
@@ -49,14 +49,21 @@ export default function Navbar() {
 					</div>
 					<div className="flex items-center space-x-6">
 						<a
-							href="https://dub.co/changelog"
+							href="https://pushify.toolbird.io/"
+							className="hidden text-sm text-gray-500 transition-colors hover:text-gray-700 sm:block py-2 px-4 border border-gray-600/10 rounded bg-neutral-50 hover:bg-neutral-100"
+							target="_blank"
+						>
+							Feedback
+						</a>
+						<a
+							href="https://pushify.toolbird.io/changelog"
 							className="hidden text-sm text-gray-500 transition-colors hover:text-gray-700 sm:block"
 							target="_blank"
 						>
 							Changelog
 						</a>
 						<a
-							href="https://dub.co/help"
+							href="https://pushify.net/help"
 							className="hidden text-sm text-gray-500 transition-colors hover:text-gray-700 sm:block"
 							target="_blank"
 						>
@@ -72,13 +79,12 @@ export default function Navbar() {
 								data-state="closed"
 							>
 								<img
-									alt="Avatar for Simon Maribo"
+									alt={`Avatar for ${user?.name}`}
 									referrerPolicy="no-referrer"
 									src="https://dubassets.com/avatars/cliok8ux60006lg08svzi3h1e"
 									className="rounded-full border border-gray-300 h-9 w-9 transition-all duration-75 group-focus:outline-none group-active:scale-95 sm:h-10 sm:w-10"
 									draggable="false"
 								/>
-								<div className="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full border-2 border-white bg-blue-500"></div>
 							</button>
 						</div>
 					</div>

@@ -31,9 +31,7 @@ export default function DefaultLayout({
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Navbar />
-			<main className={cn('flex-1 bg-neutral-50', className)}>
-				<div className="max-w-7xl mx-auto">{children}</div>
-			</main>
+			<main className={cn('flex-1', className)}>{children}</main>
 			<footer />
 		</div>
 	)
