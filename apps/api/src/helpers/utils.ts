@@ -30,6 +30,7 @@ export function getValidatedData<T extends z.ZodType<any, any, any>>(
 		return data
 	} catch (error) {
 		const errorMessage = fromZodError(error)
+		console.error(errorMessage)
 
 		res.status(400).json({
 			error: errorMessage.toString(),
