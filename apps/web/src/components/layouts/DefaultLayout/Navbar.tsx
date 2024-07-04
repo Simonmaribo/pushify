@@ -12,9 +12,17 @@ const NAVBAR_LINKS = {
 		title: 'Channels',
 		href: '/channels',
 	},
+	devices: {
+		title: 'Devices',
+		href: '/devices',
+	},
 	integrations: {
 		title: 'Integrations',
 		href: '/integrations',
+	},
+	api: {
+		title: 'API',
+		href: '/api',
 	},
 	settings: {
 		title: 'Settings',
