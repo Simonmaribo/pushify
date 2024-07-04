@@ -1,5 +1,5 @@
 import { cn } from '@/helpers/utils'
-import Navbar from './Navbar'
+import Navbar, { NavbarLink } from './Navbar'
 import useWorkspace from '@/hooks/use-workspace'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
@@ -9,11 +9,13 @@ import useUser from '@/hooks/use-user'
 type DefaultLayoutProps = {
 	children?: React.ReactNode
 	className?: string
+	active: NavbarLink
 }
 
 export default function DefaultLayout({
 	children,
 	className,
+	active,
 }: DefaultLayoutProps) {
 	const { workspace, isLoading } = useWorkspace()
 	const { user, isLoading: isUserLoading } = useUser()
@@ -30,7 +32,7 @@ export default function DefaultLayout({
 
 	return (
 		<div className="flex flex-col min-h-screen">
-			<Navbar />
+			<Navbar active={active} />
 			<main className={cn('flex-1', className)}>{children}</main>
 			<footer />
 		</div>

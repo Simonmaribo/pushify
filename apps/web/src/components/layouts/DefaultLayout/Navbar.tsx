@@ -1,10 +1,39 @@
 import useWorkspace from '@/hooks/use-workspace'
 import WorkspaceDropdown from './WorkspaceDropdown'
 import useUser from '@/hooks/use-user'
+import Link from 'next/link'
 
-export default function Navbar() {
+const NAVBAR_LINKS = {
+	overview: {
+		title: 'Overview',
+		href: '/',
+	},
+	channels: {
+		title: 'Channels',
+		href: '/channels',
+	},
+	integrations: {
+		title: 'Integrations',
+		href: '/integrations',
+	},
+	settings: {
+		title: 'Settings',
+		href: '/settings',
+	},
+}
+
+export type NavbarLink = keyof typeof NAVBAR_LINKS
+type NavbarProps = {
+	active: NavbarLink
+}
+export default function Navbar({ active }: NavbarProps) {
 	const { workspace } = useWorkspace()
 	const { user } = useUser()
+
+	const getLink = (key: string) => {
+		return `/app/${workspace?.id}${NAVBAR_LINKS[key as NavbarLink]?.href}`
+	}
+
 	return (
 		<div className="sticky left-0 right-0 top-0 z-20 border-b border-gray-200 bg-white">
 			<div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
@@ -90,40 +119,27 @@ export default function Navbar() {
 					</div>
 				</div>
 				<div className="scrollbar-hide mb-[-3px] flex h-12 items-center justify-start space-x-2 overflow-x-auto">
-					<a className="relative" href="/simon">
-						<div className="m-1 rounded-md px-3 py-2 transition-all duration-75 hover:bg-gray-100 active:bg-gray-200">
-							<p className="text-sm text-gray-600 hover:text-black">
-								Links
-							</p>
-						</div>
-						<div
-							className="absolute bottom-0 w-full px-1.5"
-							style={{ opacity: 1 }}
+					{Object.keys(NAVBAR_LINKS).map((key) => (
+						<Link
+							key={key}
+							className="relative"
+							href={getLink(key)}
 						>
-							<div className="h-0.5 bg-black"></div>
-						</div>
-					</a>
-					<a className="relative" href="/simon/analytics">
-						<div className="m-1 rounded-md px-3 py-2 transition-all duration-75 hover:bg-gray-100 active:bg-gray-200">
-							<p className="text-sm text-gray-600 hover:text-black">
-								Analytics
-							</p>
-						</div>
-					</a>
-					<a className="relative" href="/simon/domains">
-						<div className="m-1 rounded-md px-3 py-2 transition-all duration-75 hover:bg-gray-100 active:bg-gray-200">
-							<p className="text-sm text-gray-600 hover:text-black">
-								Domains
-							</p>
-						</div>
-					</a>
-					<a className="relative" href="/simon/settings">
-						<div className="m-1 rounded-md px-3 py-2 transition-all duration-75 hover:bg-gray-100 active:bg-gray-200">
-							<p className="text-sm text-gray-600 hover:text-black">
-								Settings
-							</p>
-						</div>
-					</a>
+							<div className="m-1 rounded-md px-3 py-2 transition-all duration-75 hover:bg-gray-100 active:bg-gray-200">
+								<p className="text-sm text-gray-600 hover:text-black">
+									{NAVBAR_LINKS[key as NavbarLink].title}
+								</p>
+							</div>
+							{active == key && (
+								<div
+									className="absolute bottom-0 w-full px-1.5"
+									style={{ opacity: 1 }}
+								>
+									<div className="h-0.5 bg-black"></div>
+								</div>
+							)}
+						</Link>
+					))}
 				</div>
 			</div>
 		</div>
