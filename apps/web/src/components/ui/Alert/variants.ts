@@ -8,7 +8,7 @@ export const alertVariants = cva('', {
 		},
 		color: {
 			gray: 'border-gray-200 text-gray-500',
-			primary: 'border-purple-500 text-gray-500',
+			primary: 'border-main-500 text-main-500',
 			info: 'border-blue-500 bg-blue-50 text-blue-700',
 			success: 'border-green-500 bg-green-50 text-green-700',
 			error: 'border-red-500 bg-red-50 text-red-700',
@@ -41,7 +41,7 @@ export const alertIconVariants = cva('', {
 	variants: {
 		color: {
 			gray: 'text-gray-200',
-			primary: 'text-purple-500',
+			primary: 'text-main-500',
 			info: 'text-blue-500',
 			success: 'text-green-600',
 			error: 'text-red-500',

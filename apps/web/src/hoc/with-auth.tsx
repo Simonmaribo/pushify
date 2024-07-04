@@ -20,7 +20,7 @@ export default function withAuth(
 
 		useEffect(() => {
 			if (isError) {
-				router.push('/auth/login')
+				router.push('/app/auth/login')
 			} else if (user) {
 				/*if (options.requireEmailVerification && !user.emailVerified) {
 					router.push('/auth/verify-email')

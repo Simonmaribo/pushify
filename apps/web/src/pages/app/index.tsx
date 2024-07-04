@@ -1,4 +1,6 @@
-function App() {
+import withAuth from '@/hoc/with-auth'
+
+function Home() {
 	return (
 		<div>
 			<h1>App</h1>
@@ -6,4 +8,4 @@ function App() {
 	)
 }
 
-export default App
+export default withAuth(Home)

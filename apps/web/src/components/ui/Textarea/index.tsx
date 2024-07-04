@@ -36,7 +36,7 @@ const BaseTextarea = React.forwardRef<HTMLTextAreaElement, InputProps>(
 				)}
 				<textarea
 					className={cn(
-						'text-gray-600 bg-white shadow-sm flex p-2 px-4 rounded-md h-10 w-full border border-gray-600/10 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 disabled:cursor-not-allowed disabled:opacity-50 outline-none focus-visible:ring-2 ring-purple-500',
+						'text-gray-600 bg-white shadow-sm flex p-2 px-4 rounded-md h-10 w-full border border-gray-600/10 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-400 disabled:cursor-not-allowed disabled:opacity-50 outline-none focus-visible:ring-2 ring-main-500',
 						error && 'ring-rose-500',
 						textAreaClassName
 					)}

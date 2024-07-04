@@ -15,7 +15,7 @@ export const buttonVariants = cva(
 			},
 			variant: {
 				primary:
-					'bg-gray-800 font-semibold text-xs py-2 text-white outline-purple-500 hover:bg-mauin disabled:opacity-50',
+					'bg-gray-800 font-semibold text-xs py-2 text-white outline-main-500 hover:bg-mauin disabled:opacity-50',
 
 				secondary:
 					'bg-gray-800 text-white outline-gray-900 hover:bg-gray-700 disabled:bg-gray-200',
@@ -26,7 +26,7 @@ export const buttonVariants = cva(
 					'border border-gray-200 shadow-xs [--border-width:1px] hover:bg-gray-50 disabled:border-gray-50',
 
 				transparent: 'bg-transparent hover:bg-gray-50',
-				link: 'p-0 underline underline-offset-3 focus-visible:text-purple-500',
+				link: 'p-0 underline underline-offset-3 focus-visible:text-main-500',
 			},
 
 			destructive: {
@@ -73,7 +73,7 @@ export const buttonVariants = cva(
 
 			{
 				variant: ['outline', 'tertiary', 'transparent', 'link'],
-				class: 'text-gray-900 outline-purple-500 disabled:text-gray-300',
+				class: 'text-gray-900 outline-main-500 disabled:text-gray-300',
 			},
 			{
 				variant: ['outline', 'tertiary', 'transparent', 'link'],

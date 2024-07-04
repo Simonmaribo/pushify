@@ -20,7 +20,7 @@ export default function Pagination(props: PaginationProps) {
 				props.className
 			)}
 			breakClassName="select-none size-4 flex items-center"
-			activeLinkClassName="size-8 flex items-center justify-center rounded text-purple-500 bg-gray-50"
+			activeLinkClassName="size-8 flex items-center justify-center rounded text-main-500 bg-gray-50"
 			pageLinkClassName="size-8 flex items-center cursor-pointer justify-center rounded select-none hover:bg-gray-50 transition-all"
 			breakLabel="..."
 			nextLabel={
