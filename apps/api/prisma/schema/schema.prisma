@@ -6,7 +6,7 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["prismaSchemaFolder", "fullTextSearch", "fullTextIndex"]
+  previewFeatures = ["prismaSchemaFolder"]
 }
 
 datasource db {
@@ -47,23 +47,33 @@ enum DevicePlatform {
 }
 
 model Device {
-  id String @id @default(uuid())
+  id String @id @unique
 
   // Device Details
   deviceName         String?
   deviceType         DeviceType
+  devicePlatform     DevicePlatform
   deviceYearClass    Int?
   deviceManufacturer String?
-  deviceModalName    String?
+  deviceModelName    String?
   deviceOsName       String?
   deviceOsVersion    String?
 
-  secureDeviceId String  @unique
-  pushToken      String?
+  pushToken String
 
-  platform      DevicePlatform
   subscriptions ChannelSubscription[]
   messages      MessageRecipient[]
+  authTokens    DeviceToken[]
+}
+
+model DeviceToken {
+  id String @id @default(uuid())
+
+  device   Device @relation(fields: [deviceId], references: [id])
+  deviceId String
+
+  token     String
+  expiresAt DateTime
 }
 
 model Channel {

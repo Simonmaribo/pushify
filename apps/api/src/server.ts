@@ -166,7 +166,7 @@ import Stripe from 'stripe'
 				' Express server is running on \x1b[36m' +
 				'http://localhost:' +
 				process.env.PORT +
-				`(ENV: ${process.env.NODE_ENV})` +
+				` (ENV: ${process.env.NODE_ENV})` +
 				'\x1b[0m'
 		)
 	})
