@@ -56,10 +56,7 @@ export function ensureAuthentication(server: Server) {
 						error: 'No user found corresponding to access token',
 					})
 
-				req.user = {
-					id: user.id,
-					email: user.email,
-				}
+				req.user = user
 
 				return next()
 			}
