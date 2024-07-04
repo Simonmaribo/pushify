@@ -16,6 +16,10 @@ const NAVBAR_LINKS = {
 		title: 'Devices',
 		href: '/devices',
 	},
+	messages: {
+		title: 'Messages',
+		href: '/messages',
+	},
 	integrations: {
 		title: 'Integrations',
 		href: '/integrations',
