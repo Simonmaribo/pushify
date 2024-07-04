@@ -51,7 +51,7 @@ export default function Navbar({ active }: NavbarProps) {
 			<div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
 				<div className="flex h-16 items-center justify-between">
 					<div className="flex items-center">
-						<a className="hidden sm:block" href="/">
+						<Link className="hidden sm:block" href="/">
 							<div className="max-w-fit">
 								<svg
 									width="64"
@@ -69,7 +69,7 @@ export default function Navbar({ active }: NavbarProps) {
 									></path>
 								</svg>
 							</div>
-						</a>
+						</Link>
 						<svg
 							fill="none"
 							shape-rendering="geometricPrecision"
