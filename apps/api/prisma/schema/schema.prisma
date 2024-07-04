@@ -72,7 +72,7 @@ model DeviceToken {
   device   Device @relation(fields: [deviceId], references: [id])
   deviceId String
 
-  token     String
+  token     String   @db.Text
   expiresAt DateTime
 }
 
