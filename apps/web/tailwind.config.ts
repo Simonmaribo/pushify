@@ -74,7 +74,7 @@ const config = {
 					800: '#282833',
 					900: '#121217',
 				},
-				'picton-blue': {
+				main: {
 					DEFAULT: '#41A6EB',
 					50: '#E7F4FC',
 					100: '#D5EBFB',

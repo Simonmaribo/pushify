@@ -4,7 +4,7 @@ import { type VariantProps } from 'class-variance-authority'
 
 import { cn, isElementWithChildren, isReactElement } from '@/helpers/utils'
 import { buttonVariants, iconVariants } from './variants'
-import LoadingOld from '../Loading'
+import Loading from '../Loading'
 
 /* ---------------------------------- Types --------------------------------- */
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
@@ -139,7 +139,7 @@ const Button = React.forwardRef<ButtonElement, ButtonProps>(
 						</span>
 						{loading && (
 							<span className="absolute inset-0 flex items-center justify-center">
-								<LoadingOld size="xs" color="#ffffff" />
+								<Loading size="xs" color="#ffffff" />
 							</span>
 						)}
 					</div>

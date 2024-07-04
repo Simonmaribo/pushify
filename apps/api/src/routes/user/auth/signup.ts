@@ -4,6 +4,7 @@ import type { Request, Response, Router } from 'express'
 import * as z from 'zod'
 import { verifyTurnstile } from '../../../helpers/cf'
 import { getValidatedData } from '../../../helpers/utils'
+import { ulid } from 'ulidx'
 
 const router = require('express').Router({ mergeParams: true }) as Router
 
@@ -89,6 +90,7 @@ module.exports = (server: Server) => {
 					try {
 						const user = await server.database.user.create({
 							data: {
+								id: `u_${ulid()}`.toLowerCase(),
 								email: data.email,
 								name: data.name,
 							},
@@ -114,6 +116,7 @@ module.exports = (server: Server) => {
 
 						await server.database.workspace.create({
 							data: {
+								id: `w_${ulid()}`.toLowerCase(),
 								name: 'Personal Workspace',
 								members: {
 									create: {

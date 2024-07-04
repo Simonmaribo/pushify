@@ -1,9 +1,8 @@
 model Workspace {
-    id        String    @id @unique @default(uuid())
+    id        String   @id @unique @default(uuid())
     name      String // Simon's Workspace
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-    deletedAt DateTime?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     iconId String?
 

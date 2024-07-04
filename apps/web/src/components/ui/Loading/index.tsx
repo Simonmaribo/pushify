@@ -22,7 +22,7 @@ const SIZE = {
 }
 
 export default function Loading({
-	color = '#7047EB',
+	color = '#44A8EB',
 	size = 'md',
 }: {
 	color?: string
