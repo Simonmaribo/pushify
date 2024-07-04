@@ -46,7 +46,7 @@ module.exports = (server: Server) => {
 
 				console.log(data)
 
-				server.database.device.create({
+				await server.database.device.create({
 					data: {
 						id: deviceId,
 						deviceName: data.deviceName,
