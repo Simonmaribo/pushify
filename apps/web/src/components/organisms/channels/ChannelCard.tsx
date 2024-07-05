@@ -1,5 +1,7 @@
 import Tooltip from '@/components/ui/Tooltip'
 import { Activity, MessageCircle, MoreVertical } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { FaMobile } from 'react-icons/fa'
 
 type ChannelCardProps = {
@@ -9,8 +11,18 @@ type ChannelCardProps = {
 }
 
 export default function ChannelCard(props: ChannelCardProps) {
+	const router = useRouter()
 	return (
-		<div className="p-4 rounded-xl shadow-sm hover:border-gray-200 cursor-pointer bg-white border border-gray-600/10 transition-all">
+		<Link
+			href={{
+				pathname: '/app/[workspaceId]/channels/[channelId]',
+				query: {
+					channelId: props.id,
+					workspaceId: router.query.workspaceId,
+				},
+			}}
+			className="p-4 rounded-xl shadow-sm hover:border-gray-200 cursor-pointer bg-white border border-gray-600/10 transition-all"
+		>
 			<div className="flex items-center justify-between">
 				<div className="flex gap-3 items-start">
 					<div className="size-8 rounded-xl flex items-center justify-center bg-main-600">
@@ -55,6 +67,6 @@ export default function ChannelCard(props: ChannelCardProps) {
 					</p>
 				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }
