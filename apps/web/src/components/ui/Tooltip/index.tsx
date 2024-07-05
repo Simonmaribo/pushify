@@ -33,7 +33,7 @@ export default function Tooltip({
 						<p
 							className={cn(
 								className,
-								'font-medium max-w-[300px]'
+								'font-normal max-w-[300px]'
 							)}
 						>
 							{content}

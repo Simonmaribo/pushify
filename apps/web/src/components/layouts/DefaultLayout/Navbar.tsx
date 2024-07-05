@@ -91,7 +91,7 @@ export default function Navbar({ active }: NavbarProps) {
 					<div className="flex items-center space-x-6">
 						<a
 							href="https://pushify.toolbird.io/"
-							className="hidden text-sm text-gray-500 transition-colors hover:text-gray-700 sm:block py-2 px-4 border border-gray-600/10 rounded bg-neutral-50 hover:bg-neutral-100"
+							className="hidden text-sm text-gray-500 transition-colors hover:text-gray-700 sm:block py-1 px-3 border border-gray-600/10 rounded bg-neutral-50 hover:bg-neutral-100"
 							target="_blank"
 						>
 							Feedback
