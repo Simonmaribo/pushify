@@ -103,6 +103,8 @@ model ChannelSubscription {
   device    Device  @relation(fields: [deviceId], references: [id])
   channelId String
   deviceId  Int
+
+  createdAt DateTime @default(now())
 }
 
 model ChannelSubscriptionCode {
@@ -116,6 +118,8 @@ model ChannelSubscriptionCode {
   channelId String
   usesLeft  Int? // If null, unlimited uses
   expiresAt DateTime? // If null, never expires
+
+  createdAt DateTime @default(now())
 }
 
 model Message {

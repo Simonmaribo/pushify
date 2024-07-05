@@ -7,7 +7,10 @@ declare global {
 		interface Request {
 			user: User
 			workspace: Workspace
-			deviceId?: string
+			/**
+			 * Id of the device, not the secret deviceId
+			 **/
+			deviceId: number
 		}
 	}
 }
