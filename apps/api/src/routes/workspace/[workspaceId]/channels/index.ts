@@ -5,6 +5,7 @@ import type { Request, Response } from 'express'
 import * as z from 'zod'
 import { getValidatedData } from '../../../../helpers/utils'
 import { ulid } from 'ulidx'
+import { getAvailableSubscriptionCode } from '../../../../helpers/codes'
 
 const router = require('express').Router({ mergeParams: true })
 
@@ -63,11 +64,19 @@ module.exports = (server: Server) => {
 					)
 					if (!data) return
 
+					const code = await getAvailableSubscriptionCode(server)
 					const channel = await server.database.channel.create({
 						data: {
 							id: `c_${ulid()}`.toLowerCase(),
 							workspaceId: req.workspace.id,
 							name: data.name || 'New Channel',
+							subscriptionCodes: {
+								create: {
+									default: true,
+									enabled: true,
+									code: code,
+								},
+							},
 						},
 					})
 

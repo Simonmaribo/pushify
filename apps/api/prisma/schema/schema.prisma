@@ -47,7 +47,8 @@ enum DevicePlatform {
 }
 
 model Device {
-  id String @id @unique
+  id       Int    @id @default(autoincrement())
+  deviceId String @unique
 
   // Device Details
   deviceName         String?
@@ -70,7 +71,7 @@ model DeviceToken {
   id String @id @default(uuid())
 
   device   Device @relation(fields: [deviceId], references: [id])
-  deviceId String
+  deviceId Int
 
   token     String   @db.Text
   expiresAt DateTime
@@ -88,17 +89,33 @@ model Channel {
   subscribers ChannelSubscription[]
   groups      DeliveryGroupChannel[]
 
-  createdAt DateTime  @default(now())
-  expiresAt DateTime? // Expiration date if no subscribers are created
+  createdAt         DateTime                  @default(now())
+  expiresAt         DateTime? // Expiration date if no subscribers are created
+  subscriptionCodes ChannelSubscriptionCode[]
 }
 
 model ChannelSubscription {
-  id String @id @default(uuid())
+  id          String    @id @default(uuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
 
   channel   Channel @relation(fields: [channelId], references: [id])
   device    Device  @relation(fields: [deviceId], references: [id])
   channelId String
-  deviceId  String
+  deviceId  Int
+}
+
+model ChannelSubscriptionCode {
+  id String @id @default(uuid())
+
+  default Boolean @default(false) // If true, it will show up in the UI as the default subscription code
+  enabled Boolean @default(true) // Default code is generated automatically, but can be disabled
+
+  code      String    @unique
+  channel   Channel   @relation(fields: [channelId], references: [id])
+  channelId String
+  usesLeft  Int? // If null, unlimited uses
+  expiresAt DateTime? // If null, never expires
 }
 
 model Message {
@@ -121,7 +138,7 @@ model MessageRecipient {
   message   Message @relation(fields: [messageId], references: [id])
   messageId String
   device    Device  @relation(fields: [deviceId], references: [id])
-  deviceId  String
+  deviceId  Int
 }
 
 model DeliveryGroup {

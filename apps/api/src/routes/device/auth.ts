@@ -20,7 +20,7 @@ module.exports = (server: Server) => {
 
 				const device = await server.database.device.findFirst({
 					where: {
-						id: deviceId,
+						deviceId: deviceId,
 					},
 				})
 

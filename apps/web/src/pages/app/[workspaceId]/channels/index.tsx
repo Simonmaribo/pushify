@@ -11,7 +11,7 @@ import useWorkspace from '@/hooks/use-workspace'
 import getChannelList from '@/queries/workspace/channels/getChannelList'
 import NiceModal from '@ebay/nice-modal-react'
 import { useQuery } from '@tanstack/react-query'
-import { Wifi } from 'lucide-react'
+import { LucideCircleHelp, Wifi } from 'lucide-react'
 import { HiQuestionMarkCircle } from 'react-icons/hi'
 
 function ChannelsList() {
@@ -46,7 +46,10 @@ function ChannelsList() {
 									</div>
 								}
 							>
-								<HiQuestionMarkCircle className="text-gray-500" />
+								<LucideCircleHelp
+									size={16}
+									className="text-gray-500"
+								/>
 							</Tooltip>
 						</div>
 						<Button

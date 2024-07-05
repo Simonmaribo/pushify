@@ -9,10 +9,11 @@ model Workspace {
     members           WorkspaceMember[]
     memberInvitations WorkspaceInvitation[]
 
-    channels       Channel[]
-    messages       Message[]
-    deliveryGroups DeliveryGroup[]
-    applications   Application[]
+    channels             Channel[]
+    messages             Message[]
+    deliveryGroups       DeliveryGroup[]
+    applications         Application[]
+    channelSubscriptions ChannelSubscription[]
 }
 
 enum WorkspaceRole {

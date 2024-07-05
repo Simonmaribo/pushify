@@ -38,7 +38,11 @@ module.exports = (server: Server) => {
 
 				const deviceId = uuid(`${data.pushToken}`)
 
-				if(await server.database.device.findFirst({ where: {id: deviceId }})) {
+				if (
+					await server.database.device.findFirst({
+						where: { deviceId: deviceId },
+					})
+				) {
 					return res.status(201).json({
 						status: 'success',
 					})
@@ -48,7 +52,7 @@ module.exports = (server: Server) => {
 
 				await server.database.device.create({
 					data: {
-						id: deviceId,
+						deviceId: deviceId,
 						deviceName: data.deviceName,
 						deviceType: data.deviceType,
 						devicePlatform: data.devicePlatform,
