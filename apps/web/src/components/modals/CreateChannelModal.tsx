@@ -15,6 +15,7 @@ import { useRouter } from 'next/router'
 import Loading from '@/components/ui/Loading'
 import Alert from '@/components/ui/Alert'
 import { WorkspaceItem } from '@/queries/user/getWorkspaces'
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default NiceModal.create(() => {
 	const modal = useModal()
@@ -68,6 +69,8 @@ function CreateChannelModal({ workspace, modal }: CreateWebsiteModalProps) {
 	const [submitting, setSubmitting] = useState(false)
 	const queryClient = useQueryClient()
 	const router = useRouter()
+
+	const [showAdvancedSettings, setShowAdvancedSettings] = useState(false)
 
 	const form = useForm<z.infer<typeof schema>>({
 		resolver: zodResolver(schema),
@@ -138,6 +141,23 @@ function CreateChannelModal({ workspace, modal }: CreateWebsiteModalProps) {
 						</FormItem>
 					)}
 				/>
+
+				<div>
+					<button
+						type="button"
+						className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-gray-700 focus:outline-none"
+						onClick={() =>
+							setShowAdvancedSettings(!showAdvancedSettings)
+						}
+					>
+						{showAdvancedSettings ? (
+							<ChevronDown size={18} />
+						) : (
+							<ChevronRight size={18} />
+						)}
+						<p className="text-sm">Advanced options</p>
+					</button>
+				</div>
 
 				<div className="flex gap-2">
 					<Button
