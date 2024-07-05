@@ -1,143 +1,75 @@
+import { getValidatedData } from '../../helpers/utils'
 import type Server from '../../interfaces/Server'
 import type Route from '../../interfaces/Route'
 import type { Request, Response, Router } from 'express'
-import { ensureDeviceAuth } from '../../middlewares/DeviceMiddleware'
+import * as z from 'zod'
+import { uuid } from '../../helpers/crypto'
 
 const router = require('express').Router({ mergeParams: true }) as Router
 
 module.exports = (server: Server) => {
 	return {
 		rateLimit: {
-			max: 20,
+			max: 10,
 			timePeriod: 60,
 		},
 		router: () => {
-			router.get(
-				'/',
-				ensureDeviceAuth(server),
-				async (req: Request, res: Response) => {
-					const subscriptions =
-						await server.database.channelSubscription.findMany({
-							where: {
-								deviceId: req.deviceId,
-							},
-							include: {
-								channel: true,
-							},
-						})
+			router.post('/', async (req: Request, res: Response) => {
+				const schema = z.object({
+					deviceName: z.string().optional(),
+					deviceType: z.enum([
+						'UNKNOWN',
+						'PHONE',
+						'TABLET',
+						'DESKTOP',
+						'TV',
+					]),
+					devicePlatform: z.enum(['IOS', 'ANDROID']),
+					deviceYearClass: z.number().optional(),
+					deviceManufacturer: z.string().optional(),
+					deviceModelName: z.string().optional(),
+					deviceOsName: z.string().optional(),
+					deviceOsVersion: z.string().optional(),
+					pushToken: z.string(),
+				})
 
-					const data = subscriptions.map((s) => {
-						return {
-							id: s.id,
-							name: s.channel.name,
-							createdAt: s.createdAt,
-						}
+				const data = getValidatedData<typeof schema>(req, res, schema)
+				if (!data) return
+
+				const deviceId = uuid(`${data.pushToken}`)
+
+				if (
+					await server.database.device.findFirst({
+						where: { deviceId: deviceId },
 					})
-
-					return res.status(200).json(data)
-				}
-			)
-
-			router.post(
-				'/:code',
-				ensureDeviceAuth(server),
-				async (req: Request, res: Response) => {
-					const { code } = req.params
-					if (!code)
-						return res.status(400).json({ error: 'Invalid code' })
-
-					const subscriptionCode =
-						await server.database.channelSubscriptionCode.findFirst(
-							{
-								where: {
-									code,
-								},
-								include: {
-									channel: true,
-								},
-							}
-						)
-
-					if (!subscriptionCode)
-						return res.status(400).json({ error: 'Invalid code' })
-
-					if (!subscriptionCode.enabled)
-						return res.status(400).json({ error: 'Code disabled' })
-
-					if (
-						subscriptionCode.expiresAt &&
-						subscriptionCode.expiresAt < new Date()
-					)
-						return res.status(400).json({ error: 'Code expired' })
-
-					if (
-						typeof subscriptionCode.usesLeft == 'number' &&
-						subscriptionCode.usesLeft <= 0
-					)
-						return res
-							.status(400)
-							.json({ error: 'Code uses expired' })
-
-					const channelSubscription =
-						await server.database.channelSubscription.findFirst({
-							where: {
-								channelId: subscriptionCode.channelId,
-								deviceId: req.deviceId,
-							},
-						})
-					if (channelSubscription)
-						return res
-							.status(400)
-							.json({ error: 'Already subscribed' })
-
-					await server.database.channelSubscription.create({
-						data: {
-							workspaceId: subscriptionCode.channel.workspaceId,
-							channelId: subscriptionCode.channelId,
-							deviceId: req.deviceId,
-						},
-					})
-
-					if (subscriptionCode.usesLeft)
-						await server.database.channelSubscriptionCode.update({
-							where: {
-								code,
-							},
-							data: {
-								usesLeft: {
-									decrement: 1,
-								},
-							},
-						})
-
+				) {
 					return res.status(201).json({
 						status: 'success',
 					})
 				}
-			)
 
-			router.delete(
-				'/:subscriptionId',
-				ensureDeviceAuth(server),
-				async (req: Request, res: Response) => {
-					const { subscriptionId } = req.params
-					if (!subscriptionId)
-						return res
-							.status(400)
-							.json({ error: 'Invalid subscriptionId' })
+				console.log(data)
 
-					await server.database.channelSubscription.delete({
-						where: {
-							deviceId: req.deviceId,
-							id: subscriptionId,
-						},
-					})
+				await server.database.device.create({
+					data: {
+						deviceId: deviceId,
+						deviceName: data.deviceName,
+						deviceType: data.deviceType,
+						devicePlatform: data.devicePlatform,
+						pushToken: data.pushToken,
 
-					return res.status(200).json({
-						status: 'success',
-					})
-				}
-			)
+						deviceYearClass: data.deviceYearClass,
+						deviceManufacturer: data.deviceManufacturer,
+						deviceModelName: data.deviceModelName,
+						deviceOsName: data.deviceOsName,
+						deviceOsVersion: data.deviceOsVersion,
+					},
+				})
+
+				return res.status(201).json({
+					status: 'success',
+				})
+			})
 
 			return router
 		},
