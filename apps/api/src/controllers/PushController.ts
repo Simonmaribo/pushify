@@ -15,7 +15,7 @@ export default class PushController {
 	private messagesChannel: ChannelWrapper
 	private batchesChannel: ChannelWrapper
 
-	constructor(prisma: PrismaClient) {
+	constructor() {
 		this.expo = new Expo({
 			accessToken: process.env.EXPO_ACCESS_TOKEN,
 			useFcmV1: false,

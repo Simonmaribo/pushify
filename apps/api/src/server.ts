@@ -85,7 +85,7 @@ import PushController from './controllers/PushController'
 		environment:
 			process.env.NODE_ENV == 'production' ? 'production' : 'development',
 		authManager: new AuthController(prisma),
-		pushController: new PushController(prisma),
+		pushController: new PushController(),
 		stripe: stripe,
 	}
 
