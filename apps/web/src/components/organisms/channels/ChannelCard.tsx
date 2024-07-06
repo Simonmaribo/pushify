@@ -33,7 +33,9 @@ export default function ChannelCard(props: ChannelCardProps) {
 							{props.name}
 						</h3>
 						<p className="text-xs text-gray-600">
-							{props.devices} devices connected
+							{props.devices}{' '}
+							{props.devices == 1 ? 'device' : 'devices'}{' '}
+							connected
 						</p>
 					</div>
 				</div>

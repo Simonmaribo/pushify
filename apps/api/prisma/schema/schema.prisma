@@ -131,9 +131,36 @@ model Message {
   body  String?
   data  Json?
 
-  recipients MessageRecipient[]
+  recipients     MessageRecipient[]
+  expoPushTicket ExpoPushTicket?
 
   createdAt DateTime @default(now())
+}
+
+model ExpoPushTicket {
+  id String @id @default(uuid())
+
+  ticketId      String @unique
+  ticketStatus  String
+  ticketMessage String
+  ticketDetails Json
+
+  message   Message @relation(fields: [messageId], references: [id])
+  messageId String  @unique
+
+  receipt ExpoTicketReceipt?
+}
+
+model ExpoTicketReceipt {
+  id String @id @default(uuid())
+
+  receiptId      String @unique
+  receiptStatus  String
+  receiptMessage String
+  receiptDetails Json
+
+  ticket   ExpoPushTicket @relation(fields: [ticketId], references: [id])
+  ticketId String         @unique
 }
 
 model MessageRecipient {

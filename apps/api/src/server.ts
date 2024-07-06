@@ -69,12 +69,11 @@ import type Route from './interfaces/Route'
 
 import AuthController from './controllers/AuthController'
 import Stripe from 'stripe'
+import PushController from './controllers/PushController'
 ;(async () => {
 	console.log('\x1b[32mstart\x1b[0m Express Server')
 	console.log('\x1b[32mstart\x1b[0m Prisma Client')
 	await prisma.$connect()
-
-	let authManager = new AuthController(prisma)
 
 	const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, {
 		apiVersion: '2024-04-10',
@@ -85,7 +84,8 @@ import Stripe from 'stripe'
 		database: prisma,
 		environment:
 			process.env.NODE_ENV == 'production' ? 'production' : 'development',
-		authManager: authManager,
+		authManager: new AuthController(prisma),
+		pushController: new PushController(prisma),
 		stripe: stripe,
 	}
 
