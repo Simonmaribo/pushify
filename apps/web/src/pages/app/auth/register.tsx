@@ -88,7 +88,7 @@ export default function RegisterPage() {
 						<div className="flex">
 							<Link href="https://pushify.net">
 								<img
-									className="w-[120px]"
+									className="w-[250px]"
 									alt="Pushify Logo"
 									src="/logos/logo.png"
 								/>

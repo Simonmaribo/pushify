@@ -80,7 +80,7 @@ export default function LoginPage() {
 						<div className="flex">
 							<Link href="https://pushify.net">
 								<img
-									className="w-[120px]"
+									className="w-[250px]"
 									src="/logos/logo.png"
 									alt="Pushify Logo"
 								/>
