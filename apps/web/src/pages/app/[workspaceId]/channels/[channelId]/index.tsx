@@ -1,10 +1,14 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout'
+import SendMessageModal from '@/components/modals/SendMessageModal'
 import Alert from '@/components/ui/Alert'
+import Button from '@/components/ui/Button'
 import Loading from '@/components/ui/Loading'
 import Tooltip from '@/components/ui/Tooltip'
 import withAuth from '@/hoc/with-auth'
 import useWorkspace from '@/hooks/use-workspace'
+import http from '@/queries/http'
 import getChannel from '@/queries/workspace/channels/getChannel'
+import NiceModal from '@ebay/nice-modal-react'
 import { useQuery } from '@tanstack/react-query'
 import { ChevronLeft, Edit2 } from 'lucide-react'
 import Link from 'next/link'
@@ -74,6 +78,17 @@ function ChannelPage() {
 											</button>
 										</Tooltip>
 									</div>
+								</div>
+								<div>
+									<Button
+										onClick={() =>
+											NiceModal.show(SendMessageModal, {
+												channelId: data.id,
+											})
+										}
+									>
+										Send message to channel
+									</Button>
 								</div>
 							</div>
 						</div>

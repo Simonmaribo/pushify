@@ -88,6 +88,7 @@ model Channel {
 
   subscribers ChannelSubscription[]
   groups      DeliveryGroupChannel[]
+  messages    ChannelMessages[]
 
   createdAt         DateTime                  @default(now())
   expiresAt         DateTime? // Expiration date if no subscribers are created
@@ -131,6 +132,7 @@ model Message {
   body  String?
   data  Json?
 
+  channels       ChannelMessages[]
   recipients     MessageRecipient[]
   expoPushTicket ExpoPushTicket?
 
@@ -161,6 +163,15 @@ model ExpoTicketReceipt {
 
   ticket   ExpoPushTicket @relation(fields: [ticketId], references: [id])
   ticketId String         @unique
+}
+
+model ChannelMessages {
+  id String @id @default(uuid())
+
+  channel   Channel @relation(fields: [channelId], references: [id])
+  channelId String
+  message   Message @relation(fields: [messageId], references: [id])
+  messageId String
 }
 
 model MessageRecipient {

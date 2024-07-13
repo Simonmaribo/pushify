@@ -1,6 +1,6 @@
 import http, { getError } from '@/queries/http'
 
-type ChannelListItem = {
+export type ChannelListItem = {
 	id: string
 	name: string
 	devices: number
