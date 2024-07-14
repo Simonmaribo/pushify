@@ -1,4 +1,5 @@
 import Tooltip from '@/components/ui/Tooltip'
+import { relativeTimeAgo } from '@/helpers/date'
 import { Activity, MessageCircle, MoreVertical } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -8,6 +9,8 @@ type ChannelCardProps = {
 	id: string
 	name: string
 	devices: number
+	messages: number
+	lastMessageDate: Date | null
 }
 
 export default function ChannelCard(props: ChannelCardProps) {
@@ -46,7 +49,26 @@ export default function ChannelCard(props: ChannelCardProps) {
 				</div>
 			</div>
 			<div className="mt-2 flex items-center flex-wrap gap-2.5">
-				<Tooltip content="Last message was sent 2 days ago">
+				{props.messages > 0 && (
+					<div className="flex items-center gap-1">
+						<MessageCircle
+							size={14}
+							strokeWidth={2.5}
+							className="text-gray-500"
+						/>
+						<p className="text-xs font-normal text-gray-600">
+							{props.messages}{' '}
+							{props.messages == 1 ? 'message' : 'messages'}
+						</p>
+					</div>
+				)}
+				<Tooltip
+					content={
+						props.lastMessageDate
+							? `Last message ${relativeTimeAgo(props.lastMessageDate)}`
+							: undefined
+					}
+				>
 					<div className="flex items-center gap-1">
 						<Activity
 							size={14}
@@ -54,20 +76,12 @@ export default function ChannelCard(props: ChannelCardProps) {
 							className="text-gray-500"
 						/>
 						<p className="text-xs font-normal text-gray-600">
-							2 days ago
+							{props.lastMessageDate
+								? relativeTimeAgo(props.lastMessageDate)
+								: 'No messages sent'}
 						</p>
 					</div>
 				</Tooltip>
-				<div className="flex items-center gap-1">
-					<MessageCircle
-						size={14}
-						strokeWidth={2.5}
-						className="text-gray-500"
-					/>
-					<p className="text-xs font-normal text-gray-600">
-						32 messages
-					</p>
-				</div>
 			</div>
 		</Link>
 	)

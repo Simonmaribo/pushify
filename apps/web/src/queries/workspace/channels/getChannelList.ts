@@ -4,6 +4,8 @@ export type ChannelListItem = {
 	id: string
 	name: string
 	devices: number
+	messages: number
+	lastMessageDate: Date | null
 }
 
 export default function getChannelList({

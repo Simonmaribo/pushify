@@ -22,9 +22,20 @@ module.exports = (server: Server) => {
 							workspaceId: req.workspace.id,
 						},
 						include: {
+							messages: {
+								select: {
+									id: true,
+									createdAt: true,
+								},
+								orderBy: {
+									createdAt: 'desc',
+								},
+								take: 1,
+							},
 							_count: {
 								select: {
 									subscribers: true,
+									messages: true,
 								},
 							},
 						},
@@ -35,6 +46,11 @@ module.exports = (server: Server) => {
 							id: channel.id,
 							name: channel.name,
 							devices: channel._count.subscribers,
+							messages: channel._count.messages,
+							lastMessageDate:
+								channel.messages.length > 0
+									? channel.messages[0].createdAt
+									: null,
 						}
 					})
 

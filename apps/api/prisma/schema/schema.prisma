@@ -65,6 +65,8 @@ model Device {
   subscriptions ChannelSubscription[]
   messages      MessageRecipient[]
   authTokens    DeviceToken[]
+
+  createdAt DateTime @default(now())
 }
 
 model DeviceToken {
@@ -75,6 +77,7 @@ model DeviceToken {
 
   token     String   @db.Text
   expiresAt DateTime
+  createdAt DateTime @default(now())
 }
 
 model Channel {
@@ -151,6 +154,8 @@ model ExpoPushTicket {
   messageId String  @unique
 
   receipt ExpoTicketReceipt?
+
+  createdAt DateTime @default(now())
 }
 
 model ExpoTicketReceipt {
@@ -163,6 +168,8 @@ model ExpoTicketReceipt {
 
   ticket   ExpoPushTicket @relation(fields: [ticketId], references: [id])
   ticketId String         @unique
+
+  createdAt DateTime @default(now())
 }
 
 model ChannelMessages {
@@ -172,6 +179,8 @@ model ChannelMessages {
   channelId String
   message   Message @relation(fields: [messageId], references: [id])
   messageId String
+
+  createdAt DateTime @default(now())
 }
 
 model MessageRecipient {
@@ -181,6 +190,8 @@ model MessageRecipient {
   messageId String
   device    Device  @relation(fields: [deviceId], references: [id])
   deviceId  Int
+
+  createdAt DateTime @default(now())
 }
 
 model DeliveryGroup {
@@ -193,6 +204,8 @@ model DeliveryGroup {
 
   name     String
   channels DeliveryGroupChannel[]
+
+  createdAt DateTime @default(now())
 }
 
 model DeliveryGroupChannel {
@@ -203,6 +216,8 @@ model DeliveryGroupChannel {
 
   channel   Channel @relation(fields: [channelId], references: [id])
   channelId String
+
+  createdAt DateTime @default(now())
 }
 
 model Application {
@@ -212,4 +227,6 @@ model Application {
 
   name   String
   groups DeliveryGroup[]
+
+  createdAt DateTime @default(now())
 }

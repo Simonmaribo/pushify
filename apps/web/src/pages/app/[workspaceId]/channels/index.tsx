@@ -84,6 +84,10 @@ function ChannelsList() {
 										id={channel.id}
 										name={channel.name}
 										devices={channel.devices}
+										messages={channel.messages}
+										lastMessageDate={
+											channel.lastMessageDate
+										}
 									/>
 								))}
 								<NewChannelCard />
