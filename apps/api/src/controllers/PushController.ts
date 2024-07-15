@@ -14,6 +14,7 @@ type SendMessageData = {
 	title?: string
 	subtitle?: string
 	body?: string
+	url?: string
 }
 
 export default class PushController {
@@ -142,6 +143,15 @@ export default class PushController {
 				to: message.pushTokens,
 				title: message?.message?.title || undefined,
 				body: message?.message?.body || undefined,
+				priority: 'high',
+				sound: {
+					name: 'default',
+					volume: 1,
+					critical: true,
+				},
+				data: message?.message?.data
+					? (JSON.parse(message?.message?.data?.toString()) as object)
+					: undefined,
 			}
 		})
 		const tickets = await this.expo.sendPushNotificationsAsync(expoMessages)
