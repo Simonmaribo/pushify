@@ -145,15 +145,16 @@ model Message {
 model ExpoPushTicket {
   id String @id @default(uuid())
 
-  ticketId      String @unique
+  ticketId      String? @unique
   ticketStatus  String
-  ticketMessage String
-  ticketDetails Json
+  ticketMessage String?
+  ticketDetails Json?
 
   message   Message @relation(fields: [messageId], references: [id])
   messageId String  @unique
 
-  receipt ExpoTicketReceipt?
+  receipt   ExpoTicketReceipt? @relation(fields: [receiptId], references: [id])
+  receiptId String?            @unique
 
   createdAt DateTime @default(now())
 }
@@ -166,8 +167,7 @@ model ExpoTicketReceipt {
   receiptMessage String
   receiptDetails Json
 
-  ticket   ExpoPushTicket @relation(fields: [ticketId], references: [id])
-  ticketId String         @unique
+  ticket ExpoPushTicket?
 
   createdAt DateTime @default(now())
 }

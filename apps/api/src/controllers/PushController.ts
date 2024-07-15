@@ -154,7 +154,45 @@ export default class PushController {
 					: undefined,
 			}
 		})
-		const tickets = await this.expo.sendPushNotificationsAsync(expoMessages)
+		const tickets = (await this.expo.sendPushNotificationsAsync(
+			expoMessages
+		)) as {
+			status: 'error' | 'ok'
+			id: string
+			message?: string
+			details?: object
+		}[]
+		let ticketData: {
+			ticketId?: string
+			ticketStatus: string
+			ticketMessage?: string
+			ticketDetails?: object
+			messageId: string
+		}[] = []
+
+		for (let i = 0; i < tickets.length; i++) {
+			const ticket = tickets[i]
+			const message = messages[i]
+			if (ticket.id) {
+				ticketData.push({
+					ticketId: ticket.id,
+					ticketStatus: ticket.status,
+					ticketMessage: ticket.message,
+					ticketDetails: ticket.details,
+					messageId: message.message.id,
+				})
+			} else {
+				console.error(
+					`Message with ID ${message.message.id} failed to send. Ticket: `,
+					ticket
+				)
+				// TODO: If ticket.details.error === 'DeviceNotRegistered' remove the device from the database
+			}
+		}
+
+		await this.prisma.expoPushTicket.createMany({
+			data: ticketData,
+		})
 
 		// TODO: Check for immediate errors
 
