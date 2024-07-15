@@ -194,10 +194,6 @@ export default class PushController {
 			data: ticketData,
 		})
 
-		// TODO: Check for immediate errors
-
-		// TODO: Save tickets to the database and update the message status after 15 minutes with cron job
-
 		// Acknowledge the message
 		this.batchesChannel.ack(data)
 	}
