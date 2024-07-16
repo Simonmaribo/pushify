@@ -53,18 +53,13 @@ module.exports = (server: Server) => {
 						// I have an array of channels and an array of channels that the device is subscibed to.
 						// Find the first channel that the device is subscribed to
 
-						const channel = r.message.channels.find((c) => {
-							return channels.find((subscribedChannel) => {
-								return subscribedChannel.channelId === c.id
-							})
-						})
-
 						return {
 							id: r.message.id,
 							title: r.message.title,
 							message: r.message.body,
 							channel:
-								channel?.channel?.name || 'Unknown channel',
+								r.message.channels[0]?.channel?.name ||
+								'Unknown channel',
 							createdAt: r.message.createdAt,
 						}
 					})
