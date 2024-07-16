@@ -58,6 +58,7 @@ module.exports = (server: Server) => {
 							})?.channel.name ?? 'Unknown channel'
 
 						return {
+							id: r.message.id,
 							title: r.message.title,
 							message: r.message.body,
 							channel: channelName,
