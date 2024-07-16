@@ -22,7 +22,16 @@ module.exports = (server: Server) => {
 								deviceId: req.deviceId,
 							},
 							include: {
-								channel: true,
+								channel: {
+									include: {
+										messages: {
+											take: 1,
+											orderBy: {
+												createdAt: 'desc',
+											},
+										},
+									},
+								},
 							},
 						})
 
@@ -30,6 +39,10 @@ module.exports = (server: Server) => {
 						return {
 							id: s.id,
 							name: s.channel.name,
+							lastMessage:
+								s.channel.messages.length > 0
+									? s.channel.messages[0]
+									: null,
 							createdAt: s.createdAt,
 						}
 					})
