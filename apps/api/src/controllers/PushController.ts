@@ -3,6 +3,7 @@ import { Expo, ExpoPushMessage } from 'expo-server-sdk'
 import amqplib, { Channel, ChannelWrapper } from 'amqp-connection-manager'
 import { IAmqpConnectionManager } from 'amqp-connection-manager/dist/types/AmqpConnectionManager'
 import { ConsumeMessage } from 'amqplib'
+import { JsonObject } from '@prisma/client/runtime/library'
 
 type PushMessage = {
 	message: Message
@@ -14,7 +15,6 @@ type SendMessageData = {
 	title?: string
 	subtitle?: string
 	body?: string
-	url?: string
 }
 
 export default class PushController {
@@ -150,7 +150,7 @@ export default class PushController {
 					critical: true,
 				},
 				data: message?.message?.data
-					? (JSON.parse(message?.message?.data?.toString()) as object)
+					? (message?.message?.data as JsonObject)
 					: undefined,
 			}
 		})

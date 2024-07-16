@@ -230,3 +230,16 @@ model Application {
 
   createdAt DateTime @default(now())
 }
+
+model APIKey {
+  id          String    @id @default(uuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+
+  key  String @unique
+  name String
+
+  enabled   Boolean   @default(true)
+  lastUsed  DateTime?
+  createdAt DateTime  @default(now())
+}

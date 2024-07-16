@@ -96,9 +96,21 @@ module.exports = (server: Server) => {
 						},
 					})
 
+					const subscriptionCode =
+						await server.database.channelSubscriptionCode.findFirst(
+							{
+								where: {
+									channelId: channel.id,
+									default: true,
+								},
+							}
+						)
+
 					return res.json({
 						success: true,
 						id: channel.id,
+						name: channel.name,
+						code: subscriptionCode?.code,
 					})
 				}
 			)

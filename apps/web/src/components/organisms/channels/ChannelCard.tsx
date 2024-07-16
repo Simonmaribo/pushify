@@ -48,7 +48,7 @@ export default function ChannelCard(props: ChannelCardProps) {
 					</div>
 				</div>
 			</div>
-			<div className="mt-2 flex items-center flex-wrap gap-2.5">
+			{/*<div className="mt-2 flex items-center flex-wrap gap-2.5">
 				{props.messages > 0 && (
 					<div className="flex items-center gap-1">
 						<MessageCircle
@@ -82,7 +82,7 @@ export default function ChannelCard(props: ChannelCardProps) {
 						</p>
 					</div>
 				</Tooltip>
-			</div>
+			</div>*/}
 		</Link>
 	)
 }

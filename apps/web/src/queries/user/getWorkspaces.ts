@@ -7,6 +7,7 @@ export type WorkspaceItem = {
 	iconUrl?: string
 	updatedAt: string
 	createdAt: string
+	onboarded: boolean
 }
 
 export default function getWorkspaces(): Promise<WorkspaceItem[]> {

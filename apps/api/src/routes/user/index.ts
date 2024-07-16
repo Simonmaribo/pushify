@@ -28,6 +28,7 @@ module.exports = (server: Server) => {
 						Workspace.iconId as iconId,
 						Workspace.createdAt as createdAt,
 						Workspace.updatedAt as updatedAt,
+						Workspace.onboarded as onboarded,
 						WM.role
 					FROM Workspace INNER JOIN WorkspaceMember WM on WM.userId = ${req.user.id} AND WM.workspaceId = Workspace.id
 					`

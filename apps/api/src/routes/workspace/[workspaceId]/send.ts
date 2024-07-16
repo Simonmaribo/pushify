@@ -17,6 +17,11 @@ module.exports = (server: Server) => {
 					message: z.object({
 						title: z.string().optional(),
 						body: z.string().optional(),
+						url: z
+							.string()
+							.url('URL must be a valid URL')
+							.optional(),
+						data: z.record(z.string()).optional(),
 					}),
 				})
 				.refine((data) => {
@@ -49,6 +54,10 @@ module.exports = (server: Server) => {
 						{
 							title: data.message.title,
 							body: data.message.body,
+							data: {
+								url: data.message.url || undefined,
+								...data.message.data,
+							},
 						}
 					)
 

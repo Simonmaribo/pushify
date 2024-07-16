@@ -14,6 +14,9 @@ model Workspace {
     deliveryGroups       DeliveryGroup[]
     applications         Application[]
     channelSubscriptions ChannelSubscription[]
+    apiKeys              APIKey[]
+
+    onboarded Boolean @default(false)
 }
 
 enum WorkspaceRole {

@@ -100,6 +100,10 @@ const schema = z.object({
 			.optional(),
 		z.literal(''),
 	]),
+	url: z.union([
+		z.string().url('URL must be a valid URL').optional(),
+		z.literal(''),
+	]),
 })
 
 type SendMessageModalProps = {
@@ -125,6 +129,8 @@ function SendMessageModal({
 		defaultValues: {
 			channelId: channelId || '',
 			title: '',
+			body: '',
+			url: '',
 		},
 	})
 
@@ -138,6 +144,7 @@ function SendMessageModal({
 					message: {
 						title: data.title,
 						body: data.body,
+						url: data.url,
 					},
 					channel: data.channelId,
 					channelId: undefined,
@@ -230,7 +237,7 @@ function SendMessageModal({
 							<Label>Message</Label>
 							<BaseTextarea
 								{...field}
-								textAreaClassName="text-sm w-full font-normal min-h-[200px]"
+								textAreaClassName="text-sm w-full font-normal min-h-[36px]"
 								ref={ref}
 								placeholder="John Doe has just placed an order for $100.00"
 								onChange={(value) => {
@@ -262,6 +269,25 @@ function SendMessageModal({
 						)}
 						<p className="text-sm">Advanced options</p>
 					</button>
+					{showAdvancedSettings && (
+						<div className="flex flex-col gap-4 mt-4">
+							<FormField
+								control={form.control}
+								name="url"
+								render={({ field }) => (
+									<FormItem className="w-full flex flex-col">
+										<FormInput
+											{...field}
+											label="URL (optional)"
+											description="The URL to open when the user taps the notification"
+											placeholder="https://example.com"
+											disabled={submitting}
+										/>
+									</FormItem>
+								)}
+							/>
+						</div>
+					)}
 				</div>
 
 				<div className="flex gap-2">

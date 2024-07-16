@@ -1,5 +1,8 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout'
+import ChannelAPIReference from '@/components/modals/ChannelAPIReference'
 import SendMessageModal from '@/components/modals/SendMessageModal'
+import Copyable from '@/components/molecules/Copyable'
+import CopyableInput from '@/components/molecules/CopyableInput'
 import Alert from '@/components/ui/Alert'
 import Button from '@/components/ui/Button'
 import Loading from '@/components/ui/Loading'
@@ -10,7 +13,14 @@ import http from '@/queries/http'
 import getChannel from '@/queries/workspace/channels/getChannel'
 import NiceModal from '@ebay/nice-modal-react'
 import { useQuery } from '@tanstack/react-query'
-import { ChevronLeft, Edit2 } from 'lucide-react'
+import {
+	ChevronLeft,
+	Code,
+	Code2,
+	Edit2,
+	MessageCircle,
+	MoreHorizontal,
+} from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -43,13 +53,13 @@ function ChannelPage() {
 				</div>
 			) : (
 				<>
-					<div className="flex h-36 items-center border-b border-gray-200 bg-white">
+					<div className="flex min-h-24 items-center border-b border-gray-200 bg-white py-5">
 						<div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
 							<div className="flex items-center justify-between">
 								<div className="flex flex-col gap-2">
-									<div className="flex">
+									<div className="flex items-center gap-4">
 										<Link
-											className="flex items-center font-medium gap-1 text-gray-600 border p-2 py-1 border-gray-600/10 rounded-full hover:text-gray-700 hover:bg-slate-50 transition-all"
+											className="flex items-center font-medium gap-1 text-gray-600 p-1.5 border-gray-600/10 rounded-lg hover:text-gray-700 bg-neutral-50 hover:bg-neutral-100 transition-all"
 											href={{
 												pathname: `/app/[workspaceId]/channels`,
 												query: {
@@ -57,37 +67,51 @@ function ChannelPage() {
 												},
 											}}
 										>
-											<div className="">
-												<ChevronLeft size={14} />
-											</div>
-											<span className="text-xs font-regular">
-												Back to all channels
-											</span>
+											<ChevronLeft size={18} />
 										</Link>
-									</div>
-									<div className="flex items-center gap-2">
-										<h1 className="text-2xl font-semibold tracking-tight text-black">
-											{data.name}
-										</h1>
-										<Tooltip content="Rename channel">
-											<button className="p-1 rounded-lg hover:bg-gray-50 text-gray-700">
-												<Edit2
-													size={16}
-													strokeWidth={2}
-												/>
-											</button>
-										</Tooltip>
+										<div>
+											<p className="text-sm font-medium text-gray-600">
+												Channel
+											</p>
+											<h1 className="text-2xl font-medium tracking-tight text-gray-800">
+												{data.name}
+											</h1>
+											<div className="flex items-center gap-1">
+												<Tooltip
+													content="Channel ID"
+													triggerClassName="cursor-default"
+												>
+													<span className="text-xs font-normal text-gray-600">
+														({data.id})
+													</span>
+												</Tooltip>
+												<Copyable text={data.id} />
+											</div>
+										</div>
 									</div>
 								</div>
-								<div>
+								<div className="flex items-center gap-2">
 									<Button
+										variant="secondary"
 										onClick={() =>
 											NiceModal.show(SendMessageModal, {
 												channelId: data.id,
 											})
 										}
 									>
-										Send message to channel
+										<div className="flex items-center gap-2">
+											<MessageCircle size={18} />
+											<span>Send message</span>
+										</div>
+									</Button>
+									<ChannelAPIReference channelId={data.id} />
+									<Button
+										className="text-gray-800 text-xs py-2 px-1 bg-slate-50 border-gray-600/10 hover:bg-slate-100"
+										variant="outline"
+									>
+										<div className="flex items-center gap-2">
+											<MoreHorizontal size={18} />
+										</div>
 									</Button>
 								</div>
 							</div>
