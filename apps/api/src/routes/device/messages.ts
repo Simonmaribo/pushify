@@ -21,9 +21,6 @@ module.exports = (server: Server) => {
 							where: {
 								deviceId: req.deviceId,
 							},
-							include: {
-								channel: true,
-							},
 						})
 
 					const recipients =
@@ -34,7 +31,16 @@ module.exports = (server: Server) => {
 							include: {
 								message: {
 									include: {
-										channels: true,
+										channels: {
+											select: {
+												id: true,
+												channel: {
+													select: {
+														name: true,
+													},
+												},
+											},
+										},
 									},
 								},
 							},
@@ -53,18 +59,12 @@ module.exports = (server: Server) => {
 							})
 						})
 
-						const channelName =
-							channels.find((subscribedChannel) => {
-								return (
-									subscribedChannel.channelId === channel?.id
-								)
-							})?.channel.name ?? 'Unknown channel'
-
 						return {
 							id: r.message.id,
 							title: r.message.title,
 							message: r.message.body,
-							channel: channelName,
+							channel:
+								channel?.channel?.name || 'Unknown channel',
 							createdAt: r.message.createdAt,
 						}
 					})
