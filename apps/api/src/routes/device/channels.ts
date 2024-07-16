@@ -41,7 +41,7 @@ module.exports = (server: Server) => {
 							name: s.channel.name,
 							lastMessage:
 								s.channel.messages.length > 0
-									? s.channel.messages[0]
+									? s.channel.messages[0].createdAt
 									: null,
 							createdAt: s.createdAt,
 						}
