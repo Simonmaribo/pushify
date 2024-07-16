@@ -38,6 +38,9 @@ module.exports = (server: Server) => {
 									},
 								},
 							},
+							orderBy: {
+								createdAt: 'desc',
+							},
 						})
 
 					const data = recipients.map((r) => {
