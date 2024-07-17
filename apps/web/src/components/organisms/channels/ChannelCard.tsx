@@ -60,7 +60,10 @@ export default function ChannelCard(props: ChannelCardProps) {
 								<MoreVertical size={15} />
 							</button>
 						</DropdownMenuTrigger>
-						<DropdownMenuContent align="end">
+						<DropdownMenuContent
+							align="end"
+							onClick={(e) => e.stopPropagation()}
+						>
 							<DropdownMenuItem
 								onClick={() =>
 									NiceModal.show(
