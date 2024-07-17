@@ -1,9 +1,17 @@
-import Tooltip from '@/components/ui/Tooltip'
-import { relativeTimeAgo } from '@/helpers/date'
-import { Activity, MessageCircle, MoreVertical } from 'lucide-react'
+import CreateSubscriptionCodeModal from '@/components/modals/CreateSubscriptionCodeModal'
+import SendMessageModal from '@/components/modals/SendMessageModal'
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from '@/components/ui/Dropdown'
+import NiceModal from '@ebay/nice-modal-react'
+import { MessageCircle, MoreVertical } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaMobile } from 'react-icons/fa'
+import { MdOutlineQrCodeScanner } from 'react-icons/md'
 
 type ChannelCardProps = {
 	id: string
@@ -43,9 +51,41 @@ export default function ChannelCard(props: ChannelCardProps) {
 					</div>
 				</div>
 				<div>
-					<div className="p-1 rounded-lg hover:bg-gray-50 text-gray-700">
-						<MoreVertical size={16} strokeWidth={1.5} />
-					</div>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<button
+								className="h-6 w-6 rounded bg-transparent border-none text-gray-800 hover:bg-[#0009321f] dark:hover:bg-[#0009321f] focus-visible:bg-gray-200 disabled:hover:bg-[#00005503] inline-flex items-center justify-center border disabled:cursor-not-allowed disabled:opacity-70 transition ease-in-out duration-200 focus-visible:ring-2 focus-visible:ring-[#00062e32] focus-visible:outline-none cursor-pointer align-middle"
+								type="button"
+							>
+								<MoreVertical size={15} />
+							</button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="end">
+							<DropdownMenuItem
+								onClick={() =>
+									NiceModal.show(
+										CreateSubscriptionCodeModal,
+										{
+											channelId: props.id,
+										}
+									)
+								}
+							>
+								<MdOutlineQrCodeScanner className="mr-2 h-4 w-4" />
+								<span>Create subscription code</span>
+							</DropdownMenuItem>
+							<DropdownMenuItem
+								onClick={() =>
+									NiceModal.show(SendMessageModal, {
+										channelId: props.id,
+									})
+								}
+							>
+								<MessageCircle className="mr-2 h-4 w-4" />
+								<span>Send message</span>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 			</div>
 			{/*<div className="mt-2 flex items-center flex-wrap gap-2.5">
