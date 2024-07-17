@@ -47,6 +47,9 @@ export default function OnboardingPage() {
 	return (
 		<OnboardingProvider step={step} setStep={setStep}>
 			<div className="max-w-xl">
+				<span className="uppercase text-sm font-semibold text-gray-700">
+					Onboarding
+				</span>
 				<h1 className="font-semibold text-2xl text-gray-800">
 					Send your first Push Notification
 				</h1>
