@@ -156,6 +156,21 @@ function BillingPage() {
 										</div>
 									</div>
 								</div>
+								<Alert
+									variant="expanded"
+									title="We are in Beta"
+									color="info"
+								>
+									While in beta, you are on the free plan.
+									This plan has{' '}
+									<span className="font-medium">
+										no charges{' '}
+										<span className="font-normal">and</span>{' '}
+										no limits
+									</span>
+									. These limits will first be enforced when
+									we launch.
+								</Alert>
 							</div>
 						)}
 					</div>
