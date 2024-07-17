@@ -26,6 +26,7 @@ module.exports = (server: Server) => {
 							workspaceId: req.workspace.id,
 							name: 'Onboarding API Key',
 							key: `sk_${ulid()}`.toLowerCase(),
+							lastUsed: new Date(),
 						},
 					})
 

@@ -12,26 +12,26 @@ const NAVBAR_LINKS = {
 		title: 'Channels',
 		href: '/channels',
 	},
-	devices: {
+	/*devices: {
 		title: 'Devices',
 		href: '/devices',
 	},
 	messages: {
 		title: 'Messages',
 		href: '/messages',
-	},
-	integrations: {
+	},*/
+	/*integrations: {
 		title: 'Integrations',
 		href: '/integrations',
-	},
+	},*/
 	api: {
 		title: 'API',
 		href: '/api',
 	},
-	settings: {
+	/*settings: {
 		title: 'Settings',
 		href: '/settings',
-	},
+	},*/
 }
 
 export type NavbarLink = keyof typeof NAVBAR_LINKS
