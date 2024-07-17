@@ -1,4 +1,5 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout'
+import Meta from '@/components/layouts/Meta'
 import CreateChannelModal from '@/components/modals/CreateChannelModal'
 import ChannelCard from '@/components/organisms/channels/ChannelCard'
 import NewChannelCard from '@/components/organisms/channels/NewChannelCard'
@@ -25,6 +26,7 @@ function ChannelsList() {
 
 	return (
 		<DefaultLayout className="bg-neutral-50" active="channels">
+			<Meta title="Channels · Pushify" />
 			<div className="mx-auto w-full max-w-screen-xl px-3 lg:px-24 py-8">
 				<div>
 					<div className="flex justify-between items-center">

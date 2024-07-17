@@ -1,19 +1,17 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout'
+import Meta from '@/components/layouts/Meta'
 import CreateAPIKeyModal from '@/components/modals/CreateAPIKeyModal'
 import APIListRow from '@/components/organisms/api_list/APIListRow'
 import Alert from '@/components/ui/Alert'
 import Button from '@/components/ui/Button'
 import Loading from '@/components/ui/Loading'
 import Tooltip from '@/components/ui/Tooltip'
-import { prettyDate, timeDifference } from '@/helpers/date'
-import { cn } from '@/helpers/utils'
 import withAuth from '@/hoc/with-auth'
 import useWorkspace from '@/hooks/use-workspace'
 import getAPIKeys from '@/queries/workspace/api/getAPIKeys'
 import NiceModal from '@ebay/nice-modal-react'
 import { useQuery } from '@tanstack/react-query'
-import { LucideCircleHelp, MoreHorizontal, Plus } from 'lucide-react'
-import { IoDocumentLockOutline } from 'react-icons/io5'
+import { LucideCircleHelp, Plus } from 'lucide-react'
 
 function APIPage() {
 	const { workspace } = useWorkspace()
@@ -24,6 +22,7 @@ function APIPage() {
 	})
 	return (
 		<DefaultLayout className="bg-white" active="api">
+			<Meta title="API Keys · Pushify" />
 			<div className="mx-auto w-full max-w-screen-xl px-3 lg:px-24 py-8">
 				<div className="flex justify-between items-center">
 					<div className="flex items-center gap-2">

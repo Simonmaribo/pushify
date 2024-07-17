@@ -1,26 +1,18 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout'
+import Meta from '@/components/layouts/Meta'
 import ChannelAPIReference from '@/components/modals/ChannelAPIReference'
 import SendMessageModal from '@/components/modals/SendMessageModal'
 import Copyable from '@/components/molecules/Copyable'
-import CopyableInput from '@/components/molecules/CopyableInput'
 import Alert from '@/components/ui/Alert'
 import Button from '@/components/ui/Button'
 import Loading from '@/components/ui/Loading'
 import Tooltip from '@/components/ui/Tooltip'
 import withAuth from '@/hoc/with-auth'
 import useWorkspace from '@/hooks/use-workspace'
-import http from '@/queries/http'
 import getChannel from '@/queries/workspace/channels/getChannel'
 import NiceModal from '@ebay/nice-modal-react'
 import { useQuery } from '@tanstack/react-query'
-import {
-	ChevronLeft,
-	Code,
-	Code2,
-	Edit2,
-	MessageCircle,
-	MoreHorizontal,
-} from 'lucide-react'
+import { ChevronLeft, MessageCircle, MoreHorizontal } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -41,6 +33,7 @@ function ChannelPage() {
 
 	return (
 		<DefaultLayout className="bg-neutral-50" active="channels">
+			<Meta title="Channels · Pushify" />
 			{isLoading ? (
 				<div className="flex items-center justify-center h-32">
 					<Loading size="sm" />
@@ -53,6 +46,7 @@ function ChannelPage() {
 				</div>
 			) : (
 				<>
+					<Meta title={`${data.name} · Pushify`} />
 					<div className="flex min-h-24 items-center border-b border-gray-200 bg-white py-5">
 						<div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
 							<div className="flex items-center justify-between">

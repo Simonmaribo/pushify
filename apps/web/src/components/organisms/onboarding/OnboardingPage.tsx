@@ -13,6 +13,7 @@ import ChannelStep from './ChannelStep'
 import DownloadStep from './DownloadStep'
 import SendMessageStep from './SendMessageStep'
 import DoneStep from './DoneStep'
+import Meta from '@/components/layouts/Meta'
 
 type Step = 'api_key' | 'create_channel' | 'download_app' | 'send_message'
 
@@ -46,6 +47,7 @@ export default function OnboardingPage() {
 
 	return (
 		<OnboardingProvider step={step} setStep={setStep}>
+			<Meta title="Onboarding · Pushify" />
 			<div className="mx-auto max-w-xl">
 				<span className="uppercase text-sm font-semibold text-gray-700">
 					Onboarding
