@@ -15,12 +15,15 @@ module.exports = (server: Server) => {
 					channels: z.array(z.string()).optional(),
 					channel: z.string().optional(),
 					message: z.object({
-						title: z.string().optional(),
-						body: z.string().optional(),
-						url: z
-							.string()
-							.url('URL must be a valid URL')
-							.optional(),
+						title: z.union([
+							z.string().max(255).optional(),
+							z.literal(''),
+						]),
+						body: z.union([
+							z.string().max(2000).optional(),
+							z.literal(''),
+						]),
+						url: z.union([z.string().optional(), z.literal('')]),
 						data: z.record(z.string()).optional(),
 					}),
 				})
@@ -52,7 +55,11 @@ module.exports = (server: Server) => {
 						req.workspace.id,
 						channels,
 						{
-							title: data.message.title,
+							title:
+								data.message.title != null &&
+								data.message.title !== ''
+									? data.message.title
+									: 'Empty title',
 							body: data.message.body,
 							data: {
 								url: data.message.url || undefined,
