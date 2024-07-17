@@ -1,6 +1,6 @@
 import http, { getError } from '@/queries/http'
 
-type Channel = {
+export type Channel = {
 	id: string
 	name: string
 	createdAt: Date
@@ -28,6 +28,7 @@ type Channel = {
 		channelId: string
 		usesLeft: number | null
 		expiresAt: Date | null
+		createdAt: Date
 	}[]
 }
 

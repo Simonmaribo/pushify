@@ -1,8 +1,10 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout'
 import Meta from '@/components/layouts/Meta'
 import ChannelAPIReference from '@/components/modals/ChannelAPIReference'
+import CreateSubscriptionCodeModal from '@/components/modals/CreateSubscriptionCodeModal'
 import SendMessageModal from '@/components/modals/SendMessageModal'
 import Copyable from '@/components/molecules/Copyable'
+import SubscriptionCodeRow from '@/components/organisms/channel/SubscriptionCodeRow'
 import Alert from '@/components/ui/Alert'
 import Button from '@/components/ui/Button'
 import Loading from '@/components/ui/Loading'
@@ -12,7 +14,13 @@ import useWorkspace from '@/hooks/use-workspace'
 import getChannel from '@/queries/workspace/channels/getChannel'
 import NiceModal from '@ebay/nice-modal-react'
 import { useQuery } from '@tanstack/react-query'
-import { ChevronLeft, MessageCircle, MoreHorizontal } from 'lucide-react'
+import {
+	ChevronLeft,
+	LucideCircleHelp,
+	MessageCircle,
+	MoreHorizontal,
+	Plus,
+} from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -32,7 +40,7 @@ function ChannelPage() {
 	})
 
 	return (
-		<DefaultLayout className="bg-neutral-50" active="channels">
+		<DefaultLayout className="bg-white" active="channels">
 			<Meta title="Channels · Pushify" />
 			{isLoading ? (
 				<div className="flex items-center justify-center h-32">
@@ -47,7 +55,7 @@ function ChannelPage() {
 			) : (
 				<>
 					<Meta title={`${data.name} · Pushify`} />
-					<div className="flex min-h-24 items-center border-b border-gray-200 bg-white py-5">
+					<div className="flex min-h-24 items-center  bg-white py-5">
 						<div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
 							<div className="flex items-center justify-between">
 								<div className="flex flex-col gap-2">
@@ -112,7 +120,65 @@ function ChannelPage() {
 						</div>
 					</div>
 					<div className="mx-auto w-full max-w-screen-xl px-3 lg:px-24 py-8">
-						<ul>
+						<div>
+							<div className="border-b pb-3">
+								<div className="flex items-center justify-between">
+									<h2 className="font-semibold text-gray-900">
+										Subscription codes
+									</h2>
+									<div>
+										<button
+											onClick={() =>
+												NiceModal.show(
+													CreateSubscriptionCodeModal,
+													{ channelId: data.id }
+												)
+											}
+											className="rounded-lg p-2 cursor-pointer border border-gray-600/30 shadow-sm hover:bg-neutral-100"
+										>
+											<Plus size={16} />
+										</button>
+									</div>
+								</div>
+								<p className="text-sm font-normal text-gray-600">
+									Subscription codes are codes that a device
+									can use to subscribe to the channel. They
+									can either be permanent or temporary.
+								</p>
+							</div>
+							<div className="mt-4">
+								<table className="min-w-full border-separate border-spacing-0 border-none text-left">
+									<thead className="h-8 rounded-md bg-[#0000330f]">
+										<tr>
+											<th className="w-[216px] h-8 border-b border-t border-gray-200 px-3 text-xs font-semibold text-[#00005503]1 first:rounded-l-md first:border-l last:rounded-r-md last:border-r">
+												Code
+											</th>
+
+											<th className="w-[216px] h-8 border-b border-t border-gray-200 px-3 text-xs font-semibold text-[#00005503]1 first:rounded-l-md first:border-l last:rounded-r-md last:border-r">
+												Expires
+											</th>
+											<th className="w-[150px] h-8 border-b border-t border-gray-200 px-3 text-xs font-semibold text-[#00005503]1 first:rounded-l-md first:border-l last:rounded-r-md last:border-r">
+												Status
+											</th>
+											<th className="text-right w-[103px] h-8 border-b border-t border-gray-200 px-3 text-xs font-semibold text-[#00005503]1 first:rounded-l-md first:border-l last:rounded-r-md last:border-r">
+												Created
+											</th>
+											<th className="w-[70px] h-8 border-b border-t border-gray-200 px-3 text-xs font-semibold text-[#00005503]1 first:rounded-l-md first:border-l last:rounded-r-md last:border-r"></th>
+										</tr>
+									</thead>
+									<tbody>
+										{data.codes.map((code) => (
+											<SubscriptionCodeRow
+												key={code.id}
+												item={code}
+											/>
+										))}
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<ul className="mt-12">
 							<li>Create subscription codes</li>
 							<li>Devices (ChannelSubscriptions)</li>
 							<li>Messages received</li>
