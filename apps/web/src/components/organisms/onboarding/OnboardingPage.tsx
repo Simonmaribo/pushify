@@ -46,7 +46,7 @@ export default function OnboardingPage() {
 
 	return (
 		<OnboardingProvider step={step} setStep={setStep}>
-			<div className="max-w-xl">
+			<div className="mx-auto max-w-xl">
 				<span className="uppercase text-sm font-semibold text-gray-700">
 					Onboarding
 				</span>
@@ -60,7 +60,7 @@ export default function OnboardingPage() {
 					workflows.
 				</p>
 			</div>
-			<Timeline className="mt-4 max-w-xl">
+			<Timeline className="mx-auto mt-4 max-w-xl">
 				{Array.from({ length: STEPS.length }).map((_, index) => {
 					const currentStep = index === step
 					const done = index < step
