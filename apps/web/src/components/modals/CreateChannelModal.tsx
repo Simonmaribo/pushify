@@ -142,7 +142,7 @@ function CreateChannelModal({ workspace, modal }: CreateWebsiteModalProps) {
 					)}
 				/>
 
-				<div>
+				{/*<div>
 					<button
 						type="button"
 						className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-gray-700 focus:outline-none"
@@ -157,7 +157,7 @@ function CreateChannelModal({ workspace, modal }: CreateWebsiteModalProps) {
 						)}
 						<p className="text-sm">Advanced options</p>
 					</button>
-				</div>
+				</div>*/}
 
 				<div className="flex gap-2">
 					<Button

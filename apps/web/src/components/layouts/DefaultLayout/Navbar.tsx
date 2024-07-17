@@ -32,6 +32,10 @@ const NAVBAR_LINKS = {
 		title: 'Settings',
 		href: '/settings',
 	},*/
+	billing: {
+		title: 'Usage',
+		href: '/billing',
+	},
 }
 
 export type NavbarLink = keyof typeof NAVBAR_LINKS
