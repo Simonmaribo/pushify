@@ -186,6 +186,9 @@ model ChannelMessages {
 model MessageRecipient {
   id String @id @default(uuid())
 
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+
   message   Message @relation(fields: [messageId], references: [id])
   messageId String
   device    Device  @relation(fields: [deviceId], references: [id])

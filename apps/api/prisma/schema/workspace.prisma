@@ -15,6 +15,7 @@ model Workspace {
     applications         Application[]
     channelSubscriptions ChannelSubscription[]
     apiKeys              APIKey[]
+    messageRecipients    MessageRecipient[]
 
     onboarded Boolean @default(false)
 }

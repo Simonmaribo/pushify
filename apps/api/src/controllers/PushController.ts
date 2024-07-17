@@ -70,13 +70,13 @@ export default class PushController {
 	}
 
 	public async addMessage(
-		workspace: string,
+		workspaceId: string,
 		channels: string[],
 		message: SendMessageData
 	) {
 		const channelsObjects = await this.prisma.channel.findMany({
 			where: {
-				workspaceId: workspace,
+				workspaceId: workspaceId,
 				id: {
 					in: channels,
 				},
@@ -104,7 +104,7 @@ export default class PushController {
 
 		const messageObject = await this.prisma.message.create({
 			data: {
-				workspaceId: workspace,
+				workspaceId: workspaceId,
 				data: message.data,
 				title: message.title,
 				body: message.body,
@@ -115,6 +115,7 @@ export default class PushController {
 				},
 				recipients: {
 					create: devices.map((device) => ({
+						workspaceId: workspaceId,
 						deviceId: device.id,
 					})),
 				},
