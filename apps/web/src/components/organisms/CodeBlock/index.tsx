@@ -76,6 +76,7 @@ export default function CodeBlock({
 				<div className="overflow-x-scroll flex gap-2 items-center text-xs flex-1">
 					{examples.map((example, index) => (
 						<button
+							type="button"
 							key={index}
 							onClick={() => setSelectedTitle(example.title)}
 							className={cn(

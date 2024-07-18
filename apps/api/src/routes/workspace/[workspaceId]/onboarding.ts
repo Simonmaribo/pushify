@@ -61,6 +61,7 @@ module.exports = (server: Server) => {
 									select: {
 										id: true,
 										deviceName: true,
+										deviceModelName: true,
 									},
 								},
 							},

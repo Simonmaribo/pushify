@@ -24,7 +24,10 @@ export default function DownloadStep() {
 				},
 			})
 			.then((res) => {
-				setDeviceName(res.data.device.deviceName)
+				setDeviceName(
+					res.data.device.deviceName ||
+						res.data.device.deviceModelName
+				)
 				setStep(3)
 				setSubmitting(false)
 			})
