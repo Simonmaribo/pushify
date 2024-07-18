@@ -2,7 +2,10 @@ import { useOnboarding } from '@/contexts/OnboardingContext'
 import useWorkspace from '@/hooks/use-workspace'
 import { useState } from 'react'
 import CodeBlock from '../CodeBlock'
-import { NODE_AXIOS } from '@/components/organisms/CodeBlock/code-examples/channel-api'
+import {
+	NODE_AXIOS,
+	NODE_LIB,
+} from '@/components/organisms/CodeBlock/code-examples/message-api'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -100,6 +103,25 @@ export default function SendMessageStep() {
 						className="mt-4"
 						wrapLongLines={false}
 						examples={[
+							{
+								language: 'nodejs',
+								title: 'Node.js',
+								code: NODE_LIB.replace(
+									'[CHANNEL_ID]',
+									channel?.id || 'c_12345678'
+								)
+									.replace(`[TITLE]`, form.getValues('title'))
+									.replace(
+										`[MESSAGE]`,
+										form.getValues('body')
+									)
+									.replace(
+										`[API_KEY]`,
+										showAPIKey
+											? apiKey || 'sk_12345678'
+											: `•••••••••••••••••••••••••••••`
+									),
+							},
 							{
 								language: 'nodejs',
 								title: 'Node.js (With Axios)',

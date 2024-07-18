@@ -7,9 +7,9 @@ import {
 	DrawerTrigger,
 } from '@/components/ui/Drawer'
 import {
-	REACT,
+	NODE_LIB,
 	NODE_AXIOS,
-} from '@/components/organisms/CodeBlock/code-examples/channel-api'
+} from '@/components/organisms/CodeBlock/code-examples/message-api'
 import CopyableInput from '../molecules/CopyableInput'
 import CodeBlock from '../organisms/CodeBlock'
 import { Code2 } from 'lucide-react'
@@ -58,8 +58,8 @@ export default function ChannelAPIReference(props: ChannelAPIReferenceProps) {
 							examples={[
 								{
 									language: 'javascript',
-									title: 'React',
-									code: REACT.replace(
+									title: 'Node.js',
+									code: NODE_LIB.replace(
 										'[CHANNEL_ID]',
 										props.channelId
 									),

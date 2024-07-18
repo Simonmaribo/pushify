@@ -1,16 +1,3 @@
-const REACT = `function handleSubmit(data) {
-    fetch('https://api.toolbird.io/v1/waitlist/[PUBLIC_KEY]/submit', {
-        method: 'POST',
-        body: JSON.stringify({
-            email: data.email,
-            name: data.name, // (Optional) Name field
-        }),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-}`
-
 const NODE_AXIOS = `import axios from 'axios'
 
 function sendMessage(){
@@ -26,4 +13,18 @@ function sendMessage(){
         })
 }`
 
-export { REACT, NODE_AXIOS }
+const NODE_LIB = `import Pushify from '@pushify/js'
+
+const pushify = new Pushify({
+        key: '[API_KEY]'
+})
+
+function sendMessage(){
+        await pushify.send({
+                channel: '[CHANNEL_ID]',
+                title: '[TITLE]',
+                body: '[MESSAGE]'
+        })
+}`
+
+export { NODE_LIB, NODE_AXIOS }
