@@ -72,7 +72,7 @@ model Device {
 model DeviceToken {
   id String @id @default(uuid())
 
-  device   Device @relation(fields: [deviceId], references: [id])
+  device   Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
   deviceId Int
 
   token     String   @db.Text
@@ -84,7 +84,7 @@ model Channel {
   id          String    @id @default(uuid())
   externalId  String?
   workspaceId String
-  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
   name       String
   willExpire Boolean @default(true)
@@ -101,10 +101,10 @@ model Channel {
 model ChannelSubscription {
   id          String    @id @default(uuid())
   workspaceId String
-  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
-  channel   Channel @relation(fields: [channelId], references: [id])
-  device    Device  @relation(fields: [deviceId], references: [id])
+  channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  device    Device  @relation(fields: [deviceId], references: [id], onDelete: Cascade)
   channelId String
   deviceId  Int
 
@@ -118,7 +118,7 @@ model ChannelSubscriptionCode {
   enabled Boolean @default(true) // Default code is generated automatically, but can be disabled
 
   code      String    @unique
-  channel   Channel   @relation(fields: [channelId], references: [id])
+  channel   Channel   @relation(fields: [channelId], references: [id], onDelete: Cascade)
   channelId String
   usesLeft  Int? // If null, unlimited uses
   expiresAt DateTime? // If null, never expires
@@ -129,7 +129,7 @@ model ChannelSubscriptionCode {
 model Message {
   id          String    @id @default(uuid())
   workspaceId String
-  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
   title String?
   body  String?
@@ -150,10 +150,10 @@ model ExpoPushTicket {
   ticketMessage String?
   ticketDetails Json?
 
-  message   Message @relation(fields: [messageId], references: [id])
+  message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
   messageId String  @unique
 
-  receipt   ExpoTicketReceipt? @relation(fields: [receiptId], references: [id])
+  receipt   ExpoTicketReceipt? @relation(fields: [receiptId], references: [id], onDelete: SetNull)
   receiptId String?            @unique
 
   createdAt DateTime @default(now())
@@ -175,9 +175,9 @@ model ExpoTicketReceipt {
 model ChannelMessages {
   id String @id @default(uuid())
 
-  channel   Channel @relation(fields: [channelId], references: [id])
+  channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
   channelId String
-  message   Message @relation(fields: [messageId], references: [id])
+  message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
   messageId String
 
   createdAt DateTime @default(now())
@@ -187,11 +187,11 @@ model MessageRecipient {
   id String @id @default(uuid())
 
   workspaceId String
-  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
-  message   Message @relation(fields: [messageId], references: [id])
+  message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
   messageId String
-  device    Device  @relation(fields: [deviceId], references: [id])
+  device    Device  @relation(fields: [deviceId], references: [id], onDelete: Cascade)
   deviceId  Int
 
   createdAt DateTime @default(now())
@@ -201,9 +201,9 @@ model DeliveryGroup {
   id String @id @default(uuid())
 
   workspaceId   String
-  workspace     Workspace    @relation(fields: [workspaceId], references: [id])
+  workspace     Workspace    @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   applicationId String?
-  application   Application? @relation(fields: [applicationId], references: [id])
+  application   Application? @relation(fields: [applicationId], references: [id], onDelete: SetNull)
 
   name     String
   channels DeliveryGroupChannel[]
@@ -214,10 +214,10 @@ model DeliveryGroup {
 model DeliveryGroupChannel {
   id String @id @default(uuid())
 
-  deliveryGroup   DeliveryGroup @relation(fields: [deliveryGroupId], references: [id])
+  deliveryGroup   DeliveryGroup @relation(fields: [deliveryGroupId], references: [id], onDelete: Cascade)
   deliveryGroupId String
 
-  channel   Channel @relation(fields: [channelId], references: [id])
+  channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
   channelId String
 
   createdAt DateTime @default(now())
@@ -226,7 +226,7 @@ model DeliveryGroupChannel {
 model Application {
   id          String    @id @default(uuid())
   workspaceId String
-  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
   name   String
   groups DeliveryGroup[]
@@ -237,7 +237,7 @@ model Application {
 model APIKey {
   id          String    @id @default(uuid())
   workspaceId String
-  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
   key  String @unique
   name String
