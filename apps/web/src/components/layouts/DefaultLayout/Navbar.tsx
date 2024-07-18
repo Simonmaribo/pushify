@@ -45,7 +45,7 @@ const NAVBAR_LINKS = {
 
 export type NavbarLink = keyof typeof NAVBAR_LINKS
 type NavbarProps = {
-	active: NavbarLink
+	active?: NavbarLink
 	onboarded?: boolean
 }
 export default function Navbar({ active, onboarded }: NavbarProps) {
@@ -80,7 +80,7 @@ export default function Navbar({ active, onboarded }: NavbarProps) {
 							viewBox="0 0 24 24"
 							width="14"
 							height="14"
-							className="hidden h-8 w-8 text-gray-200 sm:ml-3 sm:block"
+							className="hidden h-8 w-8 text-gray-200 sm:block"
 						>
 							<path d="M16.88 3.549L7.12 20.451"></path>
 						</svg>
@@ -89,13 +89,15 @@ export default function Navbar({ active, onboarded }: NavbarProps) {
 						</div>
 					</div>
 					<div className="flex items-center space-x-6">
-						<a
-							href="https://pushify.toolbird.io/"
+						<Link
+							href={{
+								pathname: '/app/[workspaceId]/feedback',
+								query: { workspaceId: workspace?.id },
+							}}
 							className="hidden text-sm text-gray-500 transition-colors hover:text-gray-700 sm:block py-1 px-3 border border-gray-600/10 rounded bg-neutral-50 hover:bg-neutral-100"
-							target="_blank"
 						>
 							Feedback
-						</a>
+						</Link>
 						<a
 							href="https://pushify.toolbird.io/changelog"
 							className="hidden text-sm text-gray-500 transition-colors hover:text-gray-700 sm:block"

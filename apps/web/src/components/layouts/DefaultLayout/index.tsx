@@ -9,7 +9,7 @@ import useUser from '@/hooks/use-user'
 type DefaultLayoutProps = {
 	children?: React.ReactNode
 	className?: string
-	active: NavbarLink
+	active?: NavbarLink
 }
 
 export default function DefaultLayout({

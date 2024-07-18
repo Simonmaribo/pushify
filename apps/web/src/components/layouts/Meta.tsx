@@ -4,7 +4,7 @@ const Meta = ({
 	title = 'Pushify',
 	keywords = '',
 	description = 'Open-source App Push Notification Service - send push notifications to users without the need of a mobile app.',
-	icon = '/logos/icon.png',
+	icon = '/logos/favicon.png',
 	banner = '/seo/banner.png',
 	url = 'https://pushify.net',
 }: {
