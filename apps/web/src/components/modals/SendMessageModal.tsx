@@ -223,7 +223,7 @@ function SendMessageModal({
 							<FormInput
 								{...field}
 								label="Title"
-								placeholder="[STRIPE] A new payment has been processed"
+								placeholder="💸 A new payment has been processed"
 								disabled={submitting}
 							/>
 						</FormItem>

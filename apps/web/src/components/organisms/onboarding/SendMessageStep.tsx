@@ -40,7 +40,7 @@ export default function SendMessageStep() {
 	const form = useForm({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			title: '[STRIPE] New Payment',
+			title: '💸 New Payment',
 			body: 'A new payment has been received from John Doe for $12.00',
 		},
 	})

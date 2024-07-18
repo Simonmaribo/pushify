@@ -33,7 +33,7 @@ If you want, you can pass a `url` parameter to the `send()` method to open a spe
 ```js
 await pushify.send({
     channel: "[CHANNEL_ID]",
-    title: "[STRIPE] New dispute has been created",
+    title: "💸 New dispute has been created",
     body: "Customer John Doe has disputed a payment of $135.00 USD",
     url: "https://dashboard.stripe.com/disputes/di_12345"
 })
