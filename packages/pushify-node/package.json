@@ -1,5 +1,14 @@
 {
     "name": "@pushify/js",
+    "keywords": [
+        "pushify",
+        "pushify-node",
+        "push notifications",
+        "notifications",
+        "push",
+        "app",
+        "ios"
+    ],
     "version": "0.0.1",
     "license": "MIT",
     "main": "dist/index.js",
