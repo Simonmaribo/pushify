@@ -138,7 +138,7 @@ export default function Navbar({ active, onboarded }: NavbarProps) {
 						</div>
 					</div>
 				</div>
-				{onboarded && (
+				{onboarded ? (
 					<div className="scrollbar-hide mb-[-3px] flex h-12 items-center justify-start space-x-2 overflow-x-auto">
 						{Object.keys(NAVBAR_LINKS).map((key) => (
 							<Link
@@ -162,7 +162,7 @@ export default function Navbar({ active, onboarded }: NavbarProps) {
 							</Link>
 						))}
 					</div>
-				)}
+				) : null}
 			</div>
 		</div>
 	)

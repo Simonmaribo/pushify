@@ -14,11 +14,15 @@ import DownloadStep from './DownloadStep'
 import SendMessageStep from './SendMessageStep'
 import DoneStep from './DoneStep'
 import Meta from '@/components/layouts/Meta'
+import http, { getError } from '@/queries/http'
+import useWorkspace from '@/hooks/use-workspace'
+import { toast } from 'sonner'
 
 type Step = 'api_key' | 'create_channel' | 'download_app' | 'send_message'
 
 export default function OnboardingPage() {
 	const [step, setStep] = useState<number>(0)
+	const { workspace } = useWorkspace()
 
 	const STEPS = useMemo(() => {
 		return [
@@ -44,6 +48,17 @@ export default function OnboardingPage() {
 			},
 		]
 	}, [])
+
+	async function skipOnboarding() {
+		await http
+			.post(`/workspace/${workspace?.id}/onboarding/complete`)
+			.then(() => {
+				window.location.reload()
+			})
+			.catch((error) => {
+				toast.error(getError(error))
+			})
+	}
 
 	return (
 		<OnboardingProvider step={step} setStep={setStep}>
@@ -98,6 +113,14 @@ export default function OnboardingPage() {
 					)
 				})}
 			</Timeline>
+			<div className="flex items-center justify-center">
+				<button
+					onClick={skipOnboarding}
+					className="text-sm underline text-main hover:no-underline"
+				>
+					Skip onboarding
+				</button>
+			</div>
 		</OnboardingProvider>
 	)
 }
