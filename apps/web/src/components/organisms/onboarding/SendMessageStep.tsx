@@ -50,7 +50,10 @@ export default function SendMessageStep() {
 		setSubmitting(true)
 		const pushify = new Pushify({
 			key: apiKey as string,
-			baseURL: `http://localhost:5999`,
+			baseURL:
+				process.env.NODE_ENV == 'development'
+					? `http://localhost:5999`
+					: undefined,
 		})
 
 		await pushify
