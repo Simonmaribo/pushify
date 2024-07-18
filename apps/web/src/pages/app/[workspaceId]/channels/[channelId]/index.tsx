@@ -14,13 +14,7 @@ import useWorkspace from '@/hooks/use-workspace'
 import getChannel from '@/queries/workspace/channels/getChannel'
 import NiceModal from '@ebay/nice-modal-react'
 import { useQuery } from '@tanstack/react-query'
-import {
-	ChevronLeft,
-	LucideCircleHelp,
-	MessageCircle,
-	MoreHorizontal,
-	Plus,
-} from 'lucide-react'
+import { ChevronLeft, MessageCircle, MoreHorizontal, Plus } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -63,7 +57,7 @@ function ChannelPage() {
 										<Link
 											className="flex items-center font-medium gap-1 text-gray-600 p-1.5 border-gray-600/10 rounded-lg hover:text-gray-700 bg-neutral-50 hover:bg-neutral-100 transition-all"
 											href={{
-												pathname: `/app/[workspaceId]/channels`,
+												pathname: `/app/[workspaceId]`,
 												query: {
 													workspaceId: workspace?.id,
 												},

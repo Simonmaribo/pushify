@@ -1,5 +1,6 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout'
 import Meta from '@/components/layouts/Meta'
+import ChannelListPage from '@/components/organisms/channels/ChannelListPage'
 import OnboardingPage from '@/components/organisms/onboarding/OnboardingPage'
 import withAuth from '@/hoc/with-auth'
 import useWorkspace from '@/hooks/use-workspace'
@@ -9,12 +10,12 @@ function Dashboard() {
 	return (
 		<DefaultLayout
 			className={workspace?.onboarded ? 'bg-neutral-50' : 'bg-white'}
-			active="overview"
+			active="channels"
 		>
-			<Meta title="Overview · Pushify" />
+			<Meta title="Channels · Pushify" />
 			<div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20 py-8">
 				{workspace?.onboarded ? (
-					<div>You are onboarded</div>
+					<ChannelListPage />
 				) : (
 					<OnboardingPage />
 				)}

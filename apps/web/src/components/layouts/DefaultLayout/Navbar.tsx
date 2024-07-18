@@ -13,13 +13,9 @@ import { LogOut } from 'lucide-react'
 import http from '@/queries/http'
 
 const NAVBAR_LINKS = {
-	overview: {
-		title: 'Overview',
-		href: '/',
-	},
 	channels: {
 		title: 'Channels',
-		href: '/channels',
+		href: '/',
 	},
 	/*devices: {
 		title: 'Devices',
@@ -50,8 +46,9 @@ const NAVBAR_LINKS = {
 export type NavbarLink = keyof typeof NAVBAR_LINKS
 type NavbarProps = {
 	active: NavbarLink
+	onboarded?: boolean
 }
-export default function Navbar({ active }: NavbarProps) {
+export default function Navbar({ active, onboarded }: NavbarProps) {
 	const { workspace } = useWorkspace()
 	const { user } = useUser()
 
@@ -141,29 +138,31 @@ export default function Navbar({ active }: NavbarProps) {
 						</div>
 					</div>
 				</div>
-				<div className="scrollbar-hide mb-[-3px] flex h-12 items-center justify-start space-x-2 overflow-x-auto">
-					{Object.keys(NAVBAR_LINKS).map((key) => (
-						<Link
-							key={key}
-							className="relative"
-							href={getLink(key)}
-						>
-							<div className="m-1 rounded-md px-3 py-2 transition-all duration-75 hover:bg-gray-100 active:bg-gray-200">
-								<p className="text-sm text-gray-600 hover:text-black">
-									{NAVBAR_LINKS[key as NavbarLink].title}
-								</p>
-							</div>
-							{active == key && (
-								<div
-									className="absolute bottom-0 w-full px-1.5"
-									style={{ opacity: 1 }}
-								>
-									<div className="h-0.5 bg-black"></div>
+				{onboarded && (
+					<div className="scrollbar-hide mb-[-3px] flex h-12 items-center justify-start space-x-2 overflow-x-auto">
+						{Object.keys(NAVBAR_LINKS).map((key) => (
+							<Link
+								key={key}
+								className="relative"
+								href={getLink(key)}
+							>
+								<div className="m-1 rounded-md px-3 py-2 transition-all duration-75 hover:bg-gray-100 active:bg-gray-200">
+									<p className="text-sm text-gray-600 hover:text-black">
+										{NAVBAR_LINKS[key as NavbarLink].title}
+									</p>
 								</div>
-							)}
-						</Link>
-					))}
-				</div>
+								{active == key && (
+									<div
+										className="absolute bottom-0 w-full px-1.5"
+										style={{ opacity: 1 }}
+									>
+										<div className="h-0.5 bg-black"></div>
+									</div>
+								)}
+							</Link>
+						))}
+					</div>
+				)}
 			</div>
 		</div>
 	)
