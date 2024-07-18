@@ -1,5 +1,5 @@
 {
-    "name": "pushify",
+    "name": "@pushify/js",
     "version": "0.0.1",
     "license": "MIT",
     "main": "dist/index.js",

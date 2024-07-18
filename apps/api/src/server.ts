@@ -37,6 +37,10 @@ app.use((req: Request, res: Response, next: any) => {
 	// Dont set CORS headers for the API
 	if (req.originalUrl.startsWith('/v1')) {
 		res.header('Access-Control-Allow-Origin', '*')
+		res.header(
+			'Access-Control-Allow-Headers',
+			'Content-Type, Authorization, X-Requested-With, Content-Length, X-Requested-Width, Accept, Access-Control-Allow-Credentials'
+		)
 		next()
 		return
 	}

@@ -35,7 +35,7 @@ export class Pushify {
       throw new Error('You must provide a key to use Pushify');
     }
 
-    this.baseURL = options.baseURL || 'https://api.pushify.net/v1';
+    this.baseURL = options.baseURL || 'https://api.pushify.net';
 
     this.headers = new Headers({
       Authorization: `Bearer ${options.key}`,
@@ -48,7 +48,7 @@ export class Pushify {
 
   async send(data: SendMessageData) {
     return new Promise(async (resolve, reject) => {
-      await fetch(`${this.baseURL}/send`, {
+      await fetch(`${this.baseURL}/v1/send`, {
         method: 'POST',
         headers: this.headers,
         body: JSON.stringify({

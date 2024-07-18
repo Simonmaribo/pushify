@@ -6,12 +6,10 @@ import { NODE_AXIOS } from '@/components/organisms/CodeBlock/code-examples/chann
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { show } from '@ebay/nice-modal-react'
 import Button from '@/components/ui/Button'
 import { Form } from '@/components/ui/Form'
-import http, { getError } from '@/queries/http'
 import { toast } from 'sonner'
-import { Pushify } from 'pushify'
+import { Pushify } from '@pushify/js'
 
 const schema = z.object({
 	title: z.union([
@@ -47,7 +45,10 @@ export default function SendMessageStep() {
 	async function sendMessage(data: z.infer<typeof schema>) {
 		if (submitting || success) return
 		setSubmitting(true)
-		const pushify = new Pushify({ key: apiKey as string })
+		const pushify = new Pushify({
+			key: apiKey as string,
+			baseURL: `http://localhost:5999`,
+		})
 
 		await pushify
 			.send({
