@@ -2,6 +2,15 @@ import useWorkspace from '@/hooks/use-workspace'
 import WorkspaceDropdown from './WorkspaceDropdown'
 import useUser from '@/hooks/use-user'
 import Link from 'next/link'
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from '@/components/ui/Dropdown'
+import { FaSignOutAlt } from 'react-icons/fa'
+import { LogOut } from 'lucide-react'
+import http from '@/queries/http'
 
 const NAVBAR_LINKS = {
 	overview: {
@@ -105,22 +114,30 @@ export default function Navbar({ active }: NavbarProps) {
 							Help
 						</a>
 						<div className="relative inline-block pt-1.5">
-							<button
-								className="sm:inline-flex group relative"
-								type="button"
-								aria-haspopup="dialog"
-								aria-expanded="false"
-								aria-controls="radix-:R3imrtsja:"
-								data-state="closed"
-							>
-								<img
-									alt={`Avatar for ${user?.name}`}
-									referrerPolicy="no-referrer"
-									src="https://dubassets.com/avatars/cliok8ux60006lg08svzi3h1e"
-									className="rounded-full border border-gray-300 h-9 w-9 transition-all duration-75 group-focus:outline-none group-active:scale-95 sm:h-10 sm:w-10"
-									draggable="false"
-								/>
-							</button>
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<button className="sm:inline-flex group relative">
+										<img
+											alt={`Avatar for ${user?.name}`}
+											referrerPolicy="no-referrer"
+											src={`https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(user?.name || '')}`}
+											className="rounded-full border border-gray-600/10 h-9 w-9 transition-all duration-75 group-focus:outline-none group-active:scale-95 sm:h-10 sm:w-10"
+											draggable="false"
+										/>
+									</button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent align="end">
+									<Link
+										passHref
+										href={`${http.defaults.baseURL}/user/auth/signout`}
+									>
+										<DropdownMenuItem>
+											<LogOut className="mr-2 h-4 w-4" />
+											<span>Sign out</span>
+										</DropdownMenuItem>
+									</Link>
+								</DropdownMenuContent>
+							</DropdownMenu>
 						</div>
 					</div>
 				</div>
