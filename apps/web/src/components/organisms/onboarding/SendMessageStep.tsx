@@ -11,6 +11,7 @@ import Button from '@/components/ui/Button'
 import { Form } from '@/components/ui/Form'
 import http, { getError } from '@/queries/http'
 import { toast } from 'sonner'
+import { Pushify } from 'pushify'
 
 const schema = z.object({
 	title: z.union([
@@ -46,7 +47,25 @@ export default function SendMessageStep() {
 	async function sendMessage(data: z.infer<typeof schema>) {
 		if (submitting || success) return
 		setSubmitting(true)
-		await http
+		const pushify = new Pushify({ key: apiKey as string })
+
+		await pushify
+			.send({
+				channel: channel?.id as string,
+				title: data.title as string,
+				body: data.body as string,
+			})
+			.then(() => {
+				setSubmitting(false)
+				setSuccess(true)
+				setStep(4)
+			})
+			.catch((error) => {
+				setSubmitting(false)
+				toast.error(error)
+			})
+
+		/*await http
 			.post(`/workspace/${workspace?.id}/send`, {
 				message: {
 					title: data.title,
@@ -62,7 +81,7 @@ export default function SendMessageStep() {
 			.catch((err) => {
 				setSubmitting(false)
 				toast.error(getError(err))
-			})
+			})*/
 	}
 
 	return (

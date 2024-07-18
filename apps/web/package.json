@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "pushify": "*",
     "@ebay/nice-modal-react": "^1.2.13",
     "@faker-js/faker": "^8.4.1",
     "@headlessui/react": "^1.7.18",

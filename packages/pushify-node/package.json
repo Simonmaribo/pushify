@@ -1,0 +1,42 @@
+{
+    "name": "pushify",
+    "version": "0.0.1",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "scripts": {
+        "start": "tsdx watch",
+        "build": "tsdx build",
+        "prepare": "tsdx build"
+    },
+    "prettier": {
+        "printWidth": 80,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "es5"
+    },
+    "author": "Simon Maribo",
+    "module": "dist/web.esm.js",
+    "devDependencies": {
+        "@repo/eslint-config": "*",
+        "@repo/typescript-config": "*",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.0.0",
+        "typescript": "^5.4.2"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Toolbirdapp/pushify.git"
+    },
+    "dependencies": {
+        "eslint-plugin-prettier": "^3.4.1"
+    }
+}
