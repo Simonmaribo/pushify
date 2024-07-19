@@ -15,12 +15,6 @@ module.exports = (server: Server) => {
 				ensureAuthentication(server),
 				includeWorkspace(server),
 				async (req: Request, res: Response) => {
-					if (req.workspace.onboarded) {
-						return res
-							.status(400)
-							.json({ error: 'Workspace already onboarded' })
-					}
-
 					const API_KEY = await server.database.aPIKey.create({
 						data: {
 							workspaceId: req.workspace.id,
@@ -38,12 +32,6 @@ module.exports = (server: Server) => {
 				ensureAuthentication(server),
 				includeWorkspace(server),
 				async (req: Request, res: Response) => {
-					if (req.workspace.onboarded) {
-						return res
-							.status(400)
-							.json({ error: 'Workspace already onboarded' })
-					}
-
 					const { channelId } = req.query
 					if (!channelId) {
 						return res

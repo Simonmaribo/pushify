@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 const Meta = ({
-	title = 'Pushify',
+	title = 'Pushify - Simple Push Notification Service using REST API',
 	keywords = '',
 	description = 'Open-source App Push Notification Service - send push notifications to users without the need of a mobile app.',
 	icon = '/logos/favicon.png',
