@@ -63,7 +63,11 @@ module.exports = (server: Server) => {
 						willExpire: channel.willExpire,
 						subscribers: channel.subscribers.map((subscriber) => ({
 							id: subscriber.id,
-							device: subscriber.device,
+							createdAt: subscriber.createdAt,
+							device: {
+								...subscriber.device,
+								id: undefined,
+							},
 						})),
 						codes: channel.subscriptionCodes,
 					}
