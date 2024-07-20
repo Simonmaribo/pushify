@@ -49,5 +49,11 @@
 }
 
 * {
-    font-family: "Inter", -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-family: "Inter", -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.gradient-text {
+    background: linear-gradient(0deg, #ffffff, #fafafa, #e6e6e6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
