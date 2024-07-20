@@ -12,6 +12,9 @@ function Home() {
 					For Saas Platforms (brug til dine brugere, nemt), med case
 					study / testimonial
 				</li>
+				<li>
+					Pushify vs SMS providers (price, extensibility & simplicity)
+				</li>
 				<li>Pricing</li>
 				<li>API demo - screenshot / CodeBlock</li>
 				<li>Integrations</li>
