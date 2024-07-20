@@ -30,7 +30,7 @@ const NAVBAR_LINKS = {
 		href: '/integrations',
 	},*/
 	api: {
-		title: 'API',
+		title: 'API Keys',
 		href: '/api',
 	},
 	/*settings: {
