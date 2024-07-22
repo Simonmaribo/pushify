@@ -167,7 +167,7 @@ export default function LoginPage() {
 								>
 									Sign In
 								</Button>
-								<ContentDivider className="text-xs">
+								{/*<ContentDivider className="text-xs">
 									Or sign in with
 								</ContentDivider>
 								<Button
@@ -180,7 +180,7 @@ export default function LoginPage() {
 									onClick={signinWithGoogle}
 								>
 									Sign in with Google
-								</Button>
+								</Button>*/}
 								<p className="text-sm font-normal text-center text-gray-600">
 									No account yet?{' '}
 									<span>

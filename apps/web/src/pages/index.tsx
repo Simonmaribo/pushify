@@ -1,5 +1,20 @@
+import Button from '@/components/ui/Button'
+
 function Home() {
 	return (
+		<div className="h-screen flex flex-col gap-2 items-center justify-center">
+			<img
+				src="/logos/logo.png"
+				alt="Pushify Logo"
+				className="w-[250px]"
+			/>
+			<h1 className="text-2xl font-semibold">
+				Send notifications with ease
+			</h1>
+			<Button>Sign up for Pushify</Button>
+		</div>
+	)
+	/*return (
 		<div className="p-4">
 			<p>Sections</p>
 			<ul className="list-disc list-inside">
@@ -21,7 +36,7 @@ function Home() {
 				<li>Footer</li>
 			</ul>
 		</div>
-	)
+	)*/
 }
 
 export default Home
