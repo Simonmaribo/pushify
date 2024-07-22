@@ -205,6 +205,7 @@ export default function RegisterPage() {
 								>
 									Create account
 								</Button>
+								{/*
 								<ContentDivider className="text-xs text-gray-200">
 									Or create account with Google
 								</ContentDivider>
@@ -219,6 +220,7 @@ export default function RegisterPage() {
 								>
 									Register with Google
 								</Button>
+								 */}
 								<p className="text-sm text-center font-normal text-gray-600">
 									Already have an account?{' '}
 									<span>

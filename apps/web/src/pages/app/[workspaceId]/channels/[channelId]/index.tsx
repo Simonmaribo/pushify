@@ -4,6 +4,7 @@ import ChannelAPIReference from '@/components/modals/ChannelAPIReference'
 import CreateSubscriptionCodeModal from '@/components/modals/CreateSubscriptionCodeModal'
 import SendMessageModal from '@/components/modals/SendMessageModal'
 import Copyable from '@/components/molecules/Copyable'
+import DeviceRow from '@/components/organisms/channel/DeviceRow'
 import SubscriptionCodeRow from '@/components/organisms/channel/SubscriptionCodeRow'
 import Alert from '@/components/ui/Alert'
 import Button from '@/components/ui/Button'
@@ -113,7 +114,7 @@ function ChannelPage() {
 							</div>
 						</div>
 					</div>
-					<div className="mx-auto w-full max-w-screen-xl px-3 lg:px-24 py-8">
+					<div className="flex flex-col gap-12 mx-auto w-full max-w-screen-xl px-3 lg:px-24 py-8">
 						<div>
 							<div className="border-b pb-3">
 								<div className="flex items-center justify-between">
@@ -128,9 +129,12 @@ function ChannelPage() {
 													{ channelId: data.id }
 												)
 											}
-											className="rounded-lg p-2 cursor-pointer border border-gray-600/30 shadow-sm hover:bg-neutral-100"
+											className="rounded-lg p-2 flex items-center gap-1 cursor-pointer border border-gray-600/30 shadow-sm hover:bg-neutral-100"
 										>
 											<Plus size={16} />
+											<span className="text-sm font-semibold text-gray-800">
+												Create code
+											</span>
 										</button>
 									</div>
 								</div>
@@ -171,12 +175,59 @@ function ChannelPage() {
 								</table>
 							</div>
 						</div>
-
-						<ul className="mt-12">
-							<li>Create subscription codes</li>
-							<li>Devices (ChannelSubscriptions)</li>
-							<li>Messages received</li>
-						</ul>
+						<div>
+							<div className="border-b pb-3">
+								<div className="flex items-center justify-between">
+									<h2 className="font-semibold text-gray-900">
+										Devices subscribed
+									</h2>
+								</div>
+								<p className="text-sm font-normal text-gray-600">
+									These devices will receive all messages you
+									send to this channel.
+								</p>
+							</div>
+							<div className="mt-4">
+								<table className="min-w-full border-separate border-spacing-0 border-none text-left">
+									<thead className="h-8 rounded-md bg-[#0000330f]">
+										<tr>
+											<th className="w-[216px] h-8 border-b border-t border-gray-200 px-3 text-xs font-semibold text-[#00005503]1 first:rounded-l-md first:border-l last:rounded-r-md last:border-r">
+												Device Model
+											</th>
+											<th className="w-[216px] h-8 border-b border-t border-gray-200 px-3 text-xs font-semibold text-[#00005503]1 first:rounded-l-md first:border-l last:rounded-r-md last:border-r">
+												Device Name
+											</th>
+											<th className="w-[150px] h-8 border-b border-t border-gray-200 px-3 text-xs font-semibold text-[#00005503]1 first:rounded-l-md first:border-l last:rounded-r-md last:border-r">
+												Added on
+											</th>
+											<th className="w-[70px] h-8 border-b border-t border-gray-200 px-3 text-xs font-semibold text-[#00005503]1 first:rounded-l-md first:border-l last:rounded-r-md last:border-r"></th>
+										</tr>
+									</thead>
+									<tbody>
+										{data.subscribers.map((device) => (
+											<DeviceRow
+												key={device.id}
+												item={device}
+												channelId={data.id}
+											/>
+										))}
+									</tbody>
+								</table>
+								{data.subscribers.length === 0 && (
+									<Alert
+										color="info"
+										className="mt-2"
+										title="No devices subscribed"
+										variant="expanded"
+									>
+										No devices have subscribed to this
+										channel yet. Use a subscription code in
+										the Pushify App to subscribe to this
+										channel.
+									</Alert>
+								)}
+							</div>
+						</div>
 					</div>
 				</>
 			)}

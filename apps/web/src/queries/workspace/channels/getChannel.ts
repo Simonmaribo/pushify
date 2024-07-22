@@ -8,8 +8,8 @@ export type Channel = {
 	willExpire: boolean
 	subscribers: {
 		id: string
+		createdAt: Date
 		device: {
-			id: number
 			deviceName: string | null
 			deviceType: 'UNKNOWN' | 'PHONE' | 'TABLET' | 'DESKTOP' | 'TV'
 			devicePlatform: 'IOS' | 'ANDROID'
