@@ -24,6 +24,13 @@ module.exports = (server: Server) => {
 					},
 				})
 
+				if (!device) {
+					return res.status(404).json({
+						status: 'error',
+						message: 'Device not found',
+					})
+				}
+
 				if (pushToken && device?.pushToken !== pushToken) {
 					await server.database.device.update({
 						where: {
@@ -32,13 +39,6 @@ module.exports = (server: Server) => {
 						data: {
 							pushToken,
 						},
-					})
-				}
-
-				if (!device) {
-					return res.status(404).json({
-						status: 'error',
-						message: 'Device not found',
 					})
 				}
 
