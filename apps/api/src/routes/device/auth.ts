@@ -14,15 +14,26 @@ module.exports = (server: Server) => {
 		},
 		router: () => {
 			router.post('/refresh', async (req: Request, res: Response) => {
-				const { pushToken } = req.body
+				const { pushToken, uniqueDeviceId } = req.body
 
-				const deviceId = uuid(pushToken)
+				const deviceId = uuid(uniqueDeviceId)
 
 				const device = await server.database.device.findFirst({
 					where: {
 						deviceId: deviceId,
 					},
 				})
+
+				if (pushToken && device?.pushToken !== pushToken) {
+					await server.database.device.update({
+						where: {
+							deviceId: deviceId,
+						},
+						data: {
+							pushToken,
+						},
+					})
+				}
 
 				if (!device) {
 					return res.status(404).json({

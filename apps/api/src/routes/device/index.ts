@@ -30,13 +30,14 @@ module.exports = (server: Server) => {
 					deviceModelName: z.string().optional(),
 					deviceOsName: z.string().optional(),
 					deviceOsVersion: z.string().optional(),
-					pushToken: z.string(),
+					pushToken: z.string().optional(),
+					uniqueDeviceId: z.string(),
 				})
 
 				const data = getValidatedData<typeof schema>(req, res, schema)
 				if (!data) return
 
-				const deviceId = uuid(`${data.pushToken}`)
+				const deviceId = uuid(`${data.uniqueDeviceId}`)
 
 				if (
 					await server.database.device.findFirst({

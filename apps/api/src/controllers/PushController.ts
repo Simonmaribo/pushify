@@ -101,6 +101,7 @@ export default class PushController {
 				(device, index, self) =>
 					index === self.findIndex((t) => t.id === device.id)
 			)
+			.filter((device) => device.pushToken)
 
 		const messageObject = await this.prisma.message.create({
 			data: {
