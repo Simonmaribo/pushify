@@ -1,4 +1,5 @@
 import Button from '@/components/ui/Button'
+import Link from 'next/link'
 
 function Home() {
 	return (
@@ -11,7 +12,9 @@ function Home() {
 			<h1 className="text-2xl font-semibold">
 				Send notifications with ease
 			</h1>
-			<Button>Sign up for Pushify</Button>
+			<Link href="/app">
+				<Button>Sign up for Pushify</Button>
+			</Link>
 		</div>
 	)
 	/*return (
