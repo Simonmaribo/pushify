@@ -6,6 +6,7 @@ import {
 } from '@/components/ui/Dropdown'
 import Tooltip from '@/components/ui/Tooltip'
 import { prettyDate, timeDifference } from '@/helpers/date'
+import { cn } from '@/helpers/utils'
 import useWorkspace from '@/hooks/use-workspace'
 import http, { getError } from '@/queries/http'
 import { Channel } from '@/queries/workspace/channels/getChannel'
@@ -55,6 +56,20 @@ export default function DeviceRow({
 			<td className="h-10 truncate border-b border-gray-200 px-3 text-sm text-gray-500">
 				<span className="max-w-[190px] truncate text-gray-800 font-medium">
 					{item.device.deviceName || ' '}
+				</span>
+			</td>
+			<td className="h-10 truncate border-b border-gray-200 px-3 text-sm text-gray-500">
+				<span
+					className={cn(
+						'inline-flex select-none items-center whitespace-nowrap font-medium bg-[#0000330f] text-[#00005503]1 text-xs h-6 px-2 rounded',
+						item.device.pushNotifications
+							? 'bg-emerald-100 text-emerald-900'
+							: 'bg-rose-100 text-rose-900'
+					)}
+				>
+					{item.device.pushNotifications
+						? 'Activated'
+						: 'Not activated'}
 				</span>
 			</td>
 			<td className="h-10 truncate border-b border-gray-200 px-3 text-sm text-gray-500">
