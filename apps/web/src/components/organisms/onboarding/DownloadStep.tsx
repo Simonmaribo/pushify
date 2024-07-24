@@ -59,17 +59,19 @@ export default function DownloadStep() {
 			<div>
 				<div className="flex gap-2">
 					<a
-						href="https://apps.apple.com/dk/app/pandoras-%C3%A6ske/id1642058011?l=da"
+						href="https://apps.apple.com/dk/app/pushify-notifications/id6517357435"
 						target="_blank"
 					>
 						<img src="/img/appstore.svg" width="120" />
 					</a>
+					{/* 
 					<a
 						href="https://play.google.com/store/apps/details?id=com.simonmaribo.pandorabox"
 						target="_blank"
 					>
 						<img src="/img/googleplay.png" width="120" />
 					</a>
+					*/}
 				</div>
 			</div>
 			{channel && (
