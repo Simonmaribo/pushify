@@ -69,7 +69,7 @@ function Home() {
 						<p className='text-gray-600 max-w-md text-lg'>Pushify is a digital service that allows you to send fast push notifications with ease. Get started today.</p>
 						<div className='mt-5 flex items-center gap-3'>
 							<Link className='border-2 border-black bg-black text-white text-sm px-5 py-2.5 rounded-full transition-all hover:bg-white hover:text-blue-900' href={"/get-started"}>
-								Get started
+								Get started here
 							</Link>
 						</div>
 					</div>
