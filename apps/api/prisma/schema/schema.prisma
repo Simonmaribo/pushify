@@ -60,7 +60,7 @@ model Device {
   deviceOsName       String?
   deviceOsVersion    String?
 
-  pushToken String
+  pushToken String?
 
   subscriptions ChannelSubscription[]
   messages      MessageRecipient[]

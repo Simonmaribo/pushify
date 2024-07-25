@@ -14,9 +14,9 @@ module.exports = (server: Server) => {
 		},
 		router: () => {
 			router.post('/refresh', async (req: Request, res: Response) => {
-				const { pushToken } = req.body
+				const { pushToken, uniqueDeviceId } = req.body
 
-				const deviceId = uuid(pushToken)
+				const deviceId = uuid(uniqueDeviceId)
 
 				const device = await server.database.device.findFirst({
 					where: {
@@ -28,6 +28,17 @@ module.exports = (server: Server) => {
 					return res.status(404).json({
 						status: 'error',
 						message: 'Device not found',
+					})
+				}
+
+				if (pushToken && device?.pushToken !== pushToken) {
+					await server.database.device.update({
+						where: {
+							deviceId: deviceId,
+						},
+						data: {
+							pushToken,
+						},
 					})
 				}
 

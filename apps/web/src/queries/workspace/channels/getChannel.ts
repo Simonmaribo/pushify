@@ -18,6 +18,7 @@ export type Channel = {
 			deviceModelName: string | null
 			deviceOsName: string | null
 			deviceOsVersion: string | null
+			pushNotifications?: boolean
 		}
 	}[]
 	codes: {

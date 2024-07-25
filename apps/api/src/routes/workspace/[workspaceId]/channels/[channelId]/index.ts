@@ -42,6 +42,7 @@ module.exports = (server: Server) => {
 											deviceModelName: true,
 											deviceOsName: true,
 											deviceOsVersion: true,
+											pushToken: true,
 										},
 									},
 								},
@@ -66,7 +67,10 @@ module.exports = (server: Server) => {
 							createdAt: subscriber.createdAt,
 							device: {
 								...subscriber.device,
+								pushNotifications:
+									subscriber.device.pushToken !== null,
 								id: undefined,
+								pushToken: undefined,
 							},
 						})),
 						codes: channel.subscriptionCodes,
