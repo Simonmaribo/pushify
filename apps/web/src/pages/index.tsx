@@ -12,8 +12,8 @@ function Home() {
 						alt="Pushify Logo"
 						className="w-[140px]"
 					/>
-					<div className='flex items-center gap-8'>
-						<div className='font-medium flex items-center gap-8'>
+					<div className='flex items-center gap-6'>
+						<div className='font-medium text-sm flex items-center gap-6'>
 							<Link href={"/pricing"}>
 								Pricing
 							</Link>
@@ -60,6 +60,21 @@ function Home() {
 			<SectionIntro heading="We're proudly open-source">
 				<p>hey</p>
 			</SectionIntro>
+			<section className='py-24 border-t border-gray-600/10'>
+				<div className='w-[86%] mx-auto max-w-[930px] gap-32 lg:gap-10 rounded-3xl text-black'>
+					<div className='flex flex-col gap-6 justify-center'>
+						<h2 className='text-5xl max-w-xl tracking-tighter font-semibold'>
+							Get started today
+						</h2>
+						<p className='text-gray-600 max-w-md text-lg'>Pushify is a digital service that allows you to send fast push notifications with ease. Get started today.</p>
+						<div className='mt-5 flex items-center gap-3'>
+							<Link className='border-2 border-black bg-black text-white text-sm px-5 py-2.5 rounded-full transition-all hover:bg-white hover:text-blue-900' href={"/get-started"}>
+								Get started
+							</Link>
+						</div>
+					</div>
+				</div>
+			</section>
 		</>
 	)
 	/*return (
