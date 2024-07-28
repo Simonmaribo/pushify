@@ -1,8 +1,8 @@
 import SectionIntro from '@/components/SectionIntro'
 import Button from '@/components/ui/Button'
-import { Github, GithubIcon } from 'lucide-react'
+import { Github, GithubIcon, XCircle } from 'lucide-react'
 import Link from 'next/link'
-import { FaGithub } from 'react-icons/fa'
+import { FaCheckCircle, FaGithub } from 'react-icons/fa'
 
 function Home() {
 	return (
@@ -103,21 +103,21 @@ function Home() {
 					</p>
 				</div>
 			</section>
-			<section className="py-24 border-t border-gray-600/10">
-				<div className="w-[86%] flex flex-col gap-6 mx-auto max-w-[930px]">
+			<section className="py-16 border-t border-gray-600/10">
+				<div className="w-[86%] flex flex-col gap-4 mx-auto max-w-[930px]">
 					<div className="flex mb-4">
 						<Link
 							href={'/'}
-							className="flex items-center gap-2 shadow-sm rounded-full border border-gray-600/10 px-3 py-2 hover:bg-[#fafafa] transition-all"
+							className="flex text-sm items-center gap-2 shadow-sm rounded-full border border-gray-600/10 px-3 py-2 hover:bg-[#fafafa] transition-all"
 						>
-							<FaGithub className="w-6 h-6" />
+							<FaGithub className="w-5 h-5" />
 							<p>Visit us on Github</p>
 						</Link>
 					</div>
-					<h1 className="font-semibold tracking-tighter max-w-xl text-5xl">
+					<h1 className="font-semibold tracking-tighter max-w-xl text-2xl">
 						We&apos;re proudly open-source
 					</h1>
-					<p className="text-xl max-w-lg text-gray-600">
+					<p className="text-md max-w-md text-gray-600">
 						We have made it easy to integrate and track your
 						important events in just a few minutes.
 					</p>
@@ -137,12 +137,188 @@ function Home() {
 			<section className="py-24 border-t border-gray-600/10">
 				<div className="w-[86%] flex flex-col gap-6 mx-auto max-w-[930px]">
 					<h1 className="font-semibold tracking-tighter max-w-xl text-5xl">
+						Pushify VS SMS providers
+					</h1>
+					<p className="text-xl max-w-lg text-gray-600">
+						Compare to see why Pushify is the best alternative.
+					</p>
+					<div className='grid mt-10 grid-cols-1 md:grid-cols-2 gap-6'>
+						<div className='bg-gray-50 relative border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
+							<div className='flex flex-col gap-2'>
+								<h1 className='font-medium text-xl mb-2'>Pushify</h1>
+							</div>
+							<div className='flex flex-col gap-5'>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+							</div>
+							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
+								Try out Pushify for free
+							</Link>
+							<div style={{background: "linear-gradient(40deg, rgba(62,15,135,0.1279105392156863) 0%, rgba(0,212,255,0) 53%)"}} className='rounded-2xl absolute inset-0'></div>
+						</div>
+						<div className='bg-gray-50 opacity-50 border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
+							<div className='flex flex-col gap-2'>
+								<h1 className='font-medium text-xl mb-2'>SMS providers</h1>
+							</div>
+							<div className='flex flex-col gap-5'>
+								<div className='flex items-center gap-3'>
+									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
+									<p>Feature first</p>
+								</div>
+							</div>
+							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-normal text-sm' href={"/"}>
+								Keep using the outdated way
+							</Link>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section className="py-24 border-t border-gray-600/10">
+				<div className="w-[86%] flex flex-col gap-6 mx-auto max-w-[930px]">
+					<h1 className="font-semibold tracking-tighter max-w-xl text-5xl">
 						Pricing for everyone
 					</h1>
 					<p className="text-xl max-w-lg text-gray-600">
 						We have made it easy to integrate and track your
 						important events in just a few minutes.
 					</p>
+					<div className='grid mt-10 grid-cols-1 md:grid-cols-2 gap-6'>
+						<div className='bg-gray-50 border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
+							<div className='flex flex-col gap-2'>
+								<h1 className='font-medium text-xl mb-2'>Free</h1>
+								<h2 className='text-4xl font-semibold'>$0<span className='text-lg text-gray-500 font-normal'>/ month</span></h2>
+							</div>
+							<div className='flex flex-col gap-3'>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+							</div>
+							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
+								Continue with Starter
+							</Link>
+						</div>
+						<div className='bg-gray-50 border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
+							<div className='flex flex-col gap-2'>
+								<h1 className='font-medium text-xl mb-2'>Starter</h1>
+								<h2 className='text-4xl font-semibold'>$10<span className='text-lg text-gray-500 font-normal'>/ month</span></h2>
+							</div>
+							<div className='flex flex-col gap-3'>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+							</div>
+							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
+								Continue with Starter
+							</Link>
+						</div>
+						<div className='bg-gray-50 relative border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
+							<div className='flex flex-col gap-2'>
+								<h1 className='font-medium text-xl mb-2'>Pro</h1>
+								<h2 className='text-4xl font-semibold'>$19<span className='text-lg text-gray-500 font-normal'>/ month</span></h2>
+							</div>
+							<div className='flex flex-col gap-3'>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+							</div>
+							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
+								Continue with Starter
+							</Link>
+							<div style={{background: "linear-gradient(40deg, rgba(62,15,135,0.1279105392156863) 0%, rgba(0,212,255,0) 53%)"}} className='rounded-2xl absolute inset-0'></div>
+						</div>
+						<div className='bg-gray-50 border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
+							<div className='flex flex-col gap-2'>
+								<h1 className='font-medium text-xl mb-2'>Business</h1>
+								<h2 className='text-4xl font-semibold'>$45<span className='text-lg text-gray-500 font-normal'>/ month</span></h2>
+							</div>
+							<div className='flex flex-col gap-3'>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+								<div className='flex items-center gap-3'>
+									<FaCheckCircle size={18} />
+									<p>Feature first</p>
+								</div>
+							</div>
+							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
+								Continue with Starter
+							</Link>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section className="py-24 border-t border-gray-600/10">
