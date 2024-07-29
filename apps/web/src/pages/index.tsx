@@ -110,7 +110,7 @@ function Home() {
 							href={'/'}
 							className="flex text-sm items-center gap-2 shadow-sm rounded-full border border-gray-600/10 px-3 py-2 hover:bg-[#fafafa] transition-all"
 						>
-							<FaGithub className="w-5 h-5" />
+							<FaGithub className="w-5 h-5 " />
 							<p>Visit us on Github</p>
 						</Link>
 					</div>
