@@ -65,7 +65,7 @@ export default function PhonePage() {
 						width="316"
 						height="684"
 						transform="translate(24 24)"
-						clip-path="url(#2ade4387-9c63-4fc4-b754-10e687a0d332)"
+						clipPath="url(#2ade4387-9c63-4fc4-b754-10e687a0d332)"
 					>
 						<img src="https://i.imgur.com/Ep11B2U.png" alt="" />
 					</foreignObject>
