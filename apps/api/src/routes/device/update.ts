@@ -35,12 +35,6 @@ module.exports = (server: Server) => {
 						})
 					}
 
-					if (device.pushToken) {
-						return res.status(401).json({
-							error: 'Device already authenticated',
-						})
-					}
-
 					await server.database.device.update({
 						where: {
 							id: device.id,
