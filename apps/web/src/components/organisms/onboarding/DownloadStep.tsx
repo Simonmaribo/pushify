@@ -40,16 +40,25 @@ export default function DownloadStep() {
 	return (
 		<div className="flex flex-col gap-2">
 			{channel ? (
-				<p className="text-sm">
-					Download the `Pushify` app on your phone to subscribe to{' '}
-					<span className="font-medium text-gray-800">
-						{channel?.name}
-					</span>{' '}
-					using the code{' '}
-					<span className="font-medium text-gray-800">
-						{channel?.code}
-					</span>
-				</p>
+				<>
+					<p className="text-sm">
+						Download the `Pushify` app on your phone to subscribe to{' '}
+						<span className="font-medium text-gray-800">
+							{channel?.name}
+						</span>{' '}
+						using the code:
+					</p>
+					<div className="flex gap-1">
+						{channel?.code.split('').map((char, i) => (
+							<div
+								key={i}
+								className="text-2xl text-gray-800 bg-white border shadow size-8 flex items-center justify-center rounded-lg"
+							>
+								{char}
+							</div>
+						))}
+					</div>
+				</>
 			) : (
 				<p className="text-sm">
 					Download the `Pushify` app on your phone to connect to your

@@ -6,6 +6,7 @@ import Button from '../ui/Button'
 import Copyable from '../molecules/Copyable'
 import http, { getError } from '@/queries/http'
 import useWorkspace from '@/hooks/use-workspace'
+import Tooltip from '../ui/Tooltip'
 
 export default NiceModal.create(({ channelId }: { channelId: string }) => {
 	const modal = useModal()
@@ -45,9 +46,20 @@ export default NiceModal.create(({ channelId }: { channelId: string }) => {
 					</div>
 					<div className="bg-slate-50 border-t border-gray-300 p-4 gap-2">
 						<div className="mx-auto max-w-xs flex flex-col items-center justify-center gap-4">
-							<div className="p-3.5 border border-gray-300 bg-white rounded-lg w-full flex items-center justify-between">
-								<p className="text-gray-500 text-sm">{code}</p>
-								<Copyable text={code} />
+							<div className="flex items-center gap-1">
+								{code.split('').map((char, i) => (
+									<div
+										key={i}
+										className="text-2xl text-gray-800 bg-white border shadow size-8 flex items-center justify-center rounded-lg"
+									>
+										{char}
+									</div>
+								))}
+								<Tooltip content="Copy">
+									<div className="flex items-center justify-center size-8">
+										<Copyable text={code} />
+									</div>
+								</Tooltip>
 							</div>
 							<Button
 								onClick={() => modal.remove()}
