@@ -82,7 +82,7 @@ export default function RegisterPage() {
 				title="Register • Pushify"
 				description="All the tools your tech startup needs to start, scale and run - in one platform only"
 			/>
-			<div className="flex items-center h-full justify-center lg:grid lg:grid-cols-[560px_1fr]">
+			<div className="flex items-center h-full justify-center">
 				<div className="flex items-center justify-center w-full">
 					<div className="w-[100%] rounded-xl flex flex-col justify-center gap-10 max-w-md p-6">
 						<div className="flex">
@@ -235,13 +235,6 @@ export default function RegisterPage() {
 							</form>
 						</Form>
 					</div>
-				</div>
-				<div className="w-full hidden lg:flex h-screen border-l border-gray-600/10">
-					<img
-						className="h-full w-full object-cover"
-						src="/onboarding-screens/large.webp"
-						alt="Pushify Onboarding"
-					/>
 				</div>
 			</div>
 		</div>

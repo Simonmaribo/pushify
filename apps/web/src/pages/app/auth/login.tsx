@@ -74,7 +74,7 @@ export default function LoginPage() {
 				title="Sign in • Toolbird"
 				description="All the tools your tech startup needs to start, scale and run - in one platform only"
 			/>
-			<div className="flex items-center h-full justify-center lg:grid lg:grid-cols-[560px_1fr]">
+			<div className="flex items-center h-full justify-center">
 				<div className="flex items-center justify-center w-full">
 					<div className="w-[100%] flex flex-col gap-10 max-w-md p-6 relative">
 						<div className="flex">
@@ -195,13 +195,6 @@ export default function LoginPage() {
 							</form>
 						</Form>
 					</div>
-				</div>
-				<div className="w-full hidden lg:flex h-screen border-l border-gray-600/10">
-					<img
-						className="h-full w-full object-cover"
-						src="/onboarding-screens/large.webp"
-						alt="Onboarding Screen"
-					/>
 				</div>
 			</div>
 		</div>
