@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://pushify.net
+
+# Sitemaps
+Sitemap: https://pushify.net/sitemap.xml

@@ -68,7 +68,7 @@ export default function CodeBlock({
 	return (
 		<div
 			className={cn(
-				'rounded-xl border border-gray-600/10 flex flex-col overflow-hidden',
+				'rounded-xl bg-white border border-gray-600/10 flex flex-col overflow-hidden',
 				className
 			)}
 		>

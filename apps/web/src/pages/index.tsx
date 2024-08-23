@@ -1,373 +1,289 @@
-import SectionIntro from '@/components/SectionIntro'
-import Button from '@/components/ui/Button'
-import { Github, GithubIcon, XCircle } from 'lucide-react'
+import CodeBlock from '@/components/organisms/CodeBlock'
+import { NODE_LIB } from '@/components/organisms/CodeBlock/code-examples/message-api'
+import { ArrowRight, Github } from 'lucide-react'
 import Link from 'next/link'
-import { FaCheckCircle, FaGithub } from 'react-icons/fa'
+import React from 'react'
+import { FaDiscord, FaGit, FaGithub } from 'react-icons/fa'
 
-function Home() {
+const LandingPage = () => {
 	return (
-		<>
-			<nav className="fixed h-20 flex z-10 items-center w-full bg-white">
-				<div className="w-[86%] flex items-center justify-between mx-auto max-w-[930px]">
-					<img
-						src="/logos/logo.png"
-						alt="Pushify Logo"
-						className="w-[140px]"
-					/>
-					<div className="flex items-center gap-6">
-						<div className="font-medium text-sm flex items-center gap-6">
-							<Link href={'/pricing'}>Pricing</Link>
-							<Link href={'/pricing'}>How it works</Link>
-							<Link href={'/pricing'}>Open source</Link>
-						</div>
+		<div className="min-h-screen bg-neutral-50">
+			{/* Navbar */}
+			<nav className="bg-neutral-50 shadow-lg">
+				<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="flex justify-between h-16">
 						<Link
-							className="border-2 border-black bg-black text-white text-sm px-5 py-1.5 rounded-full transition-all hover:bg-white hover:text-blue-900"
-							href={'/get-started'}
+							href="/"
+							className="flex-shrink-0 flex items-center"
 						>
-							Get started
+							<img
+								src="/logos/logo.png"
+								alt="Pushify Logo"
+								className="w-[140px]"
+							/>
 						</Link>
+						<div className="flex items-center">
+							<Link
+								href="#pricing"
+								className="hidden sm:inline px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-main transition-all"
+							>
+								Pricing
+							</Link>
+							<Link
+								href="/app"
+								className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-main transition-all"
+							>
+								Login
+							</Link>
+							<Link
+								href={`/app/auth/register`}
+								className="ml-4 px-4 py-2 rounded-md text-sm font-medium text-white bg-main hover:bg-main-600 transition-all"
+							>
+								<span className="md:hidden">Register</span>
+								<span className="hidden md:inline font-semibold">
+									Get started
+								</span>
+								<span className="hidden md:inline">
+									{' '}
+									- it&apos;s free
+								</span>
+							</Link>
+							<Link
+								href={`https://github.com/simonmaribo/pushify`}
+								target="_blank"
+								className="ml-4 rounded-full flex items-center justify-center"
+							>
+								<FaGithub
+									size={30}
+									className="text-gray-900 hover:text-gray-700"
+								/>
+							</Link>
+						</div>
 					</div>
 				</div>
 			</nav>
-			<section className="py-24 pt-36">
-				<div className="w-[86%] mx-auto max-w-[930px] gap-32 lg:gap-10 rounded-3xl text-black min-h-[700px]">
-					<div className="flex flex-col gap-6 justify-center">
-						<h2 className="text-5xl max-w-xl tracking-tighter font-semibold">
-							Send fast push notifications{' '}
-							<span className="rotate-45">with ease</span>
-						</h2>
-						<p className="text-gray-600 max-w-md text-lg">
-							Pushify is a digital service that allows you to send
-							fast push notifications with ease. Get started
-							today.
-						</p>
-						<div className="mt-5 flex items-center gap-3">
+
+			{/* Hero / Screenshot */}
+			<div className="bg-neutral-50">
+				<div className="mx-auto max-w-5xl px-10 pt-8 pb-12 sm:pb-24 lg:flex lg:py-32 lg:px-8">
+					<div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
+						<div className="flex mb-4 justify-center md:justify-start">
 							<Link
-								className="border-2 border-black bg-black text-white text-sm px-5 py-2.5 rounded-full transition-all hover:bg-white hover:text-blue-900"
-								href={'/get-started'}
+								href={'https://github.com/simonmaribo/pushify'}
+								className="flex items-center gap-2 shadow-sm rounded-full border border-gray-600/10 px-3 py-2 bg-white hover:bg-neutral-100 transition-all"
 							>
-								Get started
-							</Link>
-							<Link
-								className="border-2 border-black text-black text-sm px-5 py-2.5 rounded-full transition-all hover:text-white hover:bg-black"
-								href={'/get-started'}
-							>
-								Learn more
+								<FaGithub size={20} />
+								<p className="text-sm">Visit us on Github</p>
 							</Link>
 						</div>
-					</div>
-					<div className="flex mt-16 flex-col bg-[#fafafa] py-24 rounded-3xl border border-gray-600/10 justify-center items-center">
-						<div className="flex items-center">
-							<div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
-								<svg
-									viewBox="0 0 366 729"
-									role="img"
-									className="mx-auto w-[22.875rem] max-w-full drop-shadow-xl"
+						<h1 className="text-4xl font-semibold text-center md:text-left text-darkPurple sm:text-4xl md:text-5xl">
+							Send Push Notifications to your Phone
+						</h1>
+						<p className="mt-3 max-w-md mx-auto text-center md:text-start text-base text-gray-600 sm:text-lg md:mt-5 md:text-lg md:max-w-3xl">
+							<span className="underline">Pushify</span> is a
+							simple HTTP-based Push Notification service. You can
+							send{' '}
+							<span className="text-darkPurple font-medium">
+								notifications to your phone
+							</span>{' '}
+							using a simple REST API. Pushify can also include in
+							your{' '}
+							<span className="font-medium">SaaS Platform</span>{' '}
+							and send notifications to your users with the need
+							of publishing an App. The best thing?{' '}
+							<a
+								href="https://github.com/simonmaribo/pushify"
+								target="_blank"
+								className="text-darkPurple/80 underline hover:text-darkPurple"
+							>
+								We&apos;re Open Source.
+							</a>
+						</p>
+						<div className="mt-5 sm:flex md:mt-8">
+							<div className="rounded-md shadow">
+								<Link
+									href={`/app/auth/register`}
+									className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-darkPurple hover:bg-darkPurple/80 md:py-4 md:text-lg md:px-10"
 								>
-									<title>App screenshot</title>
-									<defs>
-										<clipPath id="2ade4387-9c63-4fc4-b754-10e687a0d332">
-											<rect width="316" height="684" rx="36" />
-										</clipPath>
-									</defs>
-									<path
-										fill="#4B5563"
-										d="M363.315 64.213C363.315 22.99 341.312 1 300.092 1H66.751C25.53 1 3.528 22.99 3.528 64.213v44.68l-.857.143A2 2 0 0 0 1 111.009v24.611a2 2 0 0 0 1.671 1.973l.95.158a2.26 2.26 0 0 1-.093.236v26.173c.212.1.398.296.541.643l-1.398.233A2 2 0 0 0 1 167.009v47.611a2 2 0 0 0 1.671 1.973l1.368.228c-.139.319-.314.533-.511.653v16.637c.221.104.414.313.56.689l-1.417.236A2 2 0 0 0 1 237.009v47.611a2 2 0 0 0 1.671 1.973l1.347.225c-.135.294-.302.493-.49.607v377.681c0 41.213 22 63.208 63.223 63.208h95.074c.947-.504 2.717-.843 4.745-.843l.141.001h.194l.086-.001 33.704.005c1.849.043 3.442.37 4.323.838h95.074c41.222 0 63.223-21.999 63.223-63.212v-394.63c-.259-.275-.48-.796-.63-1.47l-.011-.133 1.655-.276A2 2 0 0 0 366 266.62v-77.611a2 2 0 0 0-1.671-1.973l-1.712-.285c.148-.839.396-1.491.698-1.811V64.213Z"
-									/>
-									<path
-										fill="#343E4E"
-										d="M16 59c0-23.748 19.252-43 43-43h246c23.748 0 43 19.252 43 43v615c0 23.196-18.804 42-42 42H58c-23.196 0-42-18.804-42-42V59Z"
-									/>
-									<foreignObject
-										width="316"
-										height="684"
-										transform="translate(24 24)"
-										clipPath="url(#2ade4387-9c63-4fc4-b754-10e687a0d332)"
-									>
-										<img src="https://i.imgur.com/Ep11B2U.png" alt="" />
-									</foreignObject>
-								</svg>
+									Get Started
+									<ArrowRight className="ml-2" />
+								</Link>
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
-			<section className="pb-24">
-				<div className="w-[86%] flex flex-col gap-6 mx-auto max-w-[930px]">
-					<h1 className="font-semibold tracking-tighter max-w-xl text-5xl">
-						How it works
-					</h1>
-					<p className="text-xl max-w-lg text-gray-600">
-						We have made it easy to integrate and track your
-						important events in just a few minutes.
-					</p>
-				</div>
-			</section>
-			<section className="py-16 border-t border-gray-600/10">
-				<div className="w-[86%] flex flex-col gap-4 mx-auto max-w-[930px]">
-					<div className="flex mb-4">
-						<Link
-							href={'/'}
-							className="flex text-sm items-center gap-2 shadow-sm rounded-full border border-gray-600/10 px-3 py-2 hover:bg-[#fafafa] transition-all"
+					<div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow flex justify-center md:justify-end">
+						<svg
+							viewBox="0 0 366 729"
+							role="img"
+							className="w-[18rem] drop-shadow-xl"
 						>
-							<FaGithub className="w-5 h-5 " />
-							<p>Visit us on Github</p>
+							<title>App Screenshot</title>
+							<defs>
+								<clipPath id="2ade4387-9c63-4fc4-b754-10e687a0d332">
+									<rect width="316" height="684" rx="36" />
+								</clipPath>
+							</defs>
+							<path
+								fill="#4B5563"
+								d="M363.315 64.213C363.315 22.99 341.312 1 300.092 1H66.751C25.53 1 3.528 22.99 3.528 64.213v44.68l-.857.143A2 2 0 0 0 1 111.009v24.611a2 2 0 0 0 1.671 1.973l.95.158a2.26 2.26 0 0 1-.093.236v26.173c.212.1.398.296.541.643l-1.398.233A2 2 0 0 0 1 167.009v47.611a2 2 0 0 0 1.671 1.973l1.368.228c-.139.319-.314.533-.511.653v16.637c.221.104.414.313.56.689l-1.417.236A2 2 0 0 0 1 237.009v47.611a2 2 0 0 0 1.671 1.973l1.347.225c-.135.294-.302.493-.49.607v377.681c0 41.213 22 63.208 63.223 63.208h95.074c.947-.504 2.717-.843 4.745-.843l.141.001h.194l.086-.001 33.704.005c1.849.043 3.442.37 4.323.838h95.074c41.222 0 63.223-21.999 63.223-63.212v-394.63c-.259-.275-.48-.796-.63-1.47l-.011-.133 1.655-.276A2 2 0 0 0 366 266.62v-77.611a2 2 0 0 0-1.671-1.973l-1.712-.285c.148-.839.396-1.491.698-1.811V64.213Z"
+							/>
+							<path
+								fill="#343E4E"
+								d="M16 59c0-23.748 19.252-43 43-43h246c23.748 0 43 19.252 43 43v615c0 23.196-18.804 42-42 42H58c-23.196 0-42-18.804-42-42V59Z"
+							/>
+							<foreignObject
+								width="316"
+								height="684"
+								transform="translate(24 24)"
+								clipPath="url(#2ade4387-9c63-4fc4-b754-10e687a0d332)"
+							>
+								<img
+									src="https://i.imgur.com/Ep11B2U.png"
+									alt=""
+								/>
+							</foreignObject>
+						</svg>
+					</div>
+				</div>
+				<div className="flex items-center justify-center mb-8">
+					<a
+						href="https://apps.apple.com/dk/app/pushify-notifications/id6517357435"
+						target="_blank"
+					>
+						<img src="/img/appstore.svg" width="150" />
+					</a>
+				</div>
+			</div>
+
+			{/* API demo */}
+			<div className="py-12 bg-white">
+				<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4">
+					<h2 className="text-darkPurple text-center font-medium text-4xl leading-tight sm:text-5xl sm:leading-tight">
+						Easy-to-Use API
+					</h2>
+					<p className="max-w-2xl text-center mx-auto text-gray-600 sm:text-lg">
+						Pushify offers a simple and easy-to-use API for sending
+						push notifications to your phone. Here&apos;s an example
+						of how you can send a message using the Pushify API.
+					</p>
+					<div className="max-w-xl mx-auto">
+						<CodeBlock
+							wrapLongLines={false}
+							examples={[
+								{
+									language: 'javascript',
+									title: 'Node.js',
+									code: NODE_LIB,
+								},
+							]}
+						/>
+					</div>
+				</div>
+			</div>
+
+			{/* Open Source Section */}
+			<div className="bg-white/10 py-20">
+				<div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
+					<div className="mx-auto max-w-md text-center sm:max-w-xl">
+						<h2 className="text-darkPurple font-medium text-4xl leading-tight sm:text-5xl sm:leading-tight">
+							Proudly open-source
+						</h2>
+						<p className="mt-5 text-gray-600 sm:text-lg">
+							Our source code is available on GitHub - feel free
+							to read, review, or contribute to it however you
+							want!
+						</p>
+					</div>
+					<div className="flex items-center justify-center py-10">
+						<Link
+							href="https://github.com/simonmaribo/pushify"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<div className="flex items-center">
+								<div className="flex h-10 items-center space-x-2 rounded-md border border-gray-600 bg-gray-800 p-4 hover:bg-gray-700 transition-all">
+									<FaGithub
+										size={24}
+										className="text-white"
+									/>
+									<p className="font-medium text-white">
+										Star us on GitHub
+									</p>
+								</div>
+								<div className="features_label__aL_5o">
+									<p className="font-display font-medium text-white">
+										0
+									</p>
+								</div>
+							</div>
 						</Link>
 					</div>
-					<h1 className="font-semibold tracking-tighter max-w-xl text-2xl">
-						We&apos;re proudly open-source
-					</h1>
-					<p className="text-md max-w-md text-gray-600">
-						We have made it easy to integrate and track your
-						important events in just a few minutes.
+				</div>
+			</div>
+
+			{/* Pricing */}
+			<div className="bg-white py-12" id="pricing">
+				<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+					<h2 className="text-darkPurple text-center font-medium text-4xl leading-tight sm:text-5xl sm:leading-tight">
+						Pricing
+					</h2>
+					<p className="text-center">
+						Everthing is{' '}
+						<span className="text-darkPurple font-semibold">
+							Free
+						</span>{' '}
+						while Pushify is in Beta and features are being added.
+					</p>
+					<p className="mt-2 text-center max-w-xl mx-auto">
+						<span className="font-medium">
+							But how do you expect the pricing to look like?
+						</span>{' '}
+						Expect that Pushify will forever be free for{' '}
+						<span className="font-medium">1 device</span> and up to{' '}
+						<span className="font-medium">
+							2500 sent push notifications a month.
+						</span>{' '}
+						Pricing will depend on the amount of devices connected
+						and the amount of push notifications sent.
 					</p>
 				</div>
-			</section>
-			<section className="py-24 border-t border-gray-600/10">
-				<div className="w-[86%] flex flex-col gap-6 mx-auto max-w-[930px]">
-					<h1 className="font-semibold tracking-tighter max-w-xl text-5xl">
-						For SaaS platforms
-					</h1>
-					<p className="text-xl max-w-lg text-gray-600">
-						We have made it easy to integrate and track your
-						important events in just a few minutes.
-					</p>
-				</div>
-			</section>
-			<section className="py-24 border-t border-gray-600/10">
-				<div className="w-[86%] flex flex-col gap-6 mx-auto max-w-[930px]">
-					<h1 className="font-semibold tracking-tighter max-w-xl text-5xl">
-						Pushify VS SMS providers
-					</h1>
-					<p className="text-xl max-w-lg text-gray-600">
-						Compare to see why Pushify is the best alternative.
-					</p>
-					<div className='grid mt-10 grid-cols-1 md:grid-cols-2 gap-6'>
-						<div className='bg-gray-50 relative border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
-							<div className='flex flex-col gap-2'>
-								<h1 className='font-medium text-xl mb-2'>Pushify</h1>
-							</div>
-							<div className='flex flex-col gap-5'>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-							</div>
-							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
-								Try out Pushify for free
-							</Link>
-							<div style={{background: "linear-gradient(40deg, rgba(62,15,135,0.1279105392156863) 0%, rgba(0,212,255,0) 53%)"}} className='rounded-2xl absolute inset-0'></div>
-						</div>
-						<div className='bg-gray-50 opacity-50 border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
-							<div className='flex flex-col gap-2'>
-								<h1 className='font-medium text-xl mb-2'>SMS providers</h1>
-							</div>
-							<div className='flex flex-col gap-5'>
-								<div className='flex items-center gap-3'>
-									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<XCircle fill='black' className='text-white ml-[-3px]' size={24} />
-									<p>Feature first</p>
-								</div>
-							</div>
-							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-normal text-sm' href={"/"}>
-								Keep using the outdated way
-							</Link>
+			</div>
+			{/* Footer */}
+			<footer className="bg-white border-t border-gray-100">
+				<div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+					<div className="md:flex md:items-center md:justify-between">
+						<div className="mt-8 md:mt-0 md:order-1">
+							<p className="text-center text-base text-gray-400">
+								&copy; 2024{' '}
+								<a
+									href="https://plexit.group"
+									className="hover:underline"
+								>
+									Plexit Group
+								</a>
+								. All rights reserved.
+							</p>
 						</div>
 					</div>
-				</div>
-			</section>
-			<section className="py-24 border-t border-gray-600/10">
-				<div className="w-[86%] flex flex-col gap-6 mx-auto max-w-[930px]">
-					<h1 className="font-semibold tracking-tighter max-w-xl text-5xl">
-						Pricing for everyone
-					</h1>
-					<p className="text-xl max-w-lg text-gray-600">
-						We have made it easy to integrate and track your
-						important events in just a few minutes.
-					</p>
-					<div className='grid mt-10 grid-cols-1 md:grid-cols-2 gap-6'>
-						<div className='bg-gray-50 border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
-							<div className='flex flex-col gap-2'>
-								<h1 className='font-medium text-xl mb-2'>Free</h1>
-								<h2 className='text-4xl font-semibold'>$0<span className='text-lg text-gray-500 font-normal'>/ month</span></h2>
-							</div>
-							<div className='flex flex-col gap-3'>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-							</div>
-							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
-								Continue with Starter
-							</Link>
-						</div>
-						<div className='bg-gray-50 border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
-							<div className='flex flex-col gap-2'>
-								<h1 className='font-medium text-xl mb-2'>Starter</h1>
-								<h2 className='text-4xl font-semibold'>$10<span className='text-lg text-gray-500 font-normal'>/ month</span></h2>
-							</div>
-							<div className='flex flex-col gap-3'>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-							</div>
-							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
-								Continue with Starter
-							</Link>
-						</div>
-						<div className='bg-gray-50 relative border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
-							<div className='flex flex-col gap-2'>
-								<h1 className='font-medium text-xl mb-2'>Pro</h1>
-								<h2 className='text-4xl font-semibold'>$19<span className='text-lg text-gray-500 font-normal'>/ month</span></h2>
-							</div>
-							<div className='flex flex-col gap-3'>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-							</div>
-							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
-								Continue with Starter
-							</Link>
-							<div style={{background: "linear-gradient(40deg, rgba(62,15,135,0.1279105392156863) 0%, rgba(0,212,255,0) 53%)"}} className='rounded-2xl absolute inset-0'></div>
-						</div>
-						<div className='bg-gray-50 border flex flex-col gap-8 border-gray-600/10 rounded-2xl p-8'>
-							<div className='flex flex-col gap-2'>
-								<h1 className='font-medium text-xl mb-2'>Business</h1>
-								<h2 className='text-4xl font-semibold'>$45<span className='text-lg text-gray-500 font-normal'>/ month</span></h2>
-							</div>
-							<div className='flex flex-col gap-3'>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-								<div className='flex items-center gap-3'>
-									<FaCheckCircle size={18} />
-									<p>Feature first</p>
-								</div>
-							</div>
-							<Link className='bg-black hover:text-gray-200 transition-all block text-white rounded-2xl py-3 text-center font-medium text-sm' href={"/"}>
-								Continue with Starter
-							</Link>
-						</div>
+					<div className="flex items-center gap-2">
+						<Link
+							href="https://github.com/simonmaribo/pushify"
+							className="p-1.5 rounded-lg hover:bg-gray-50 transition-all"
+						>
+							<FaGithub size={24} />
+						</Link>
+						<Link
+							href="https://discord.gg/uK8kMt8vJU"
+							target="_blank"
+							className="p-1.5 rounded-lg hover:bg-gray-50 transition-all"
+						>
+							<FaDiscord size={24} />
+						</Link>
 					</div>
 				</div>
-			</section>
-			<section className="py-24 border-t border-gray-600/10">
-				<div className="w-[86%] mx-auto max-w-[930px] gap-32 lg:gap-10 rounded-3xl text-black">
-					<div className="flex flex-col gap-6 justify-center">
-						<h2 className="text-5xl max-w-xl tracking-tighter font-semibold">
-							Get started today
-						</h2>
-						<p className="text-gray-600 max-w-md text-lg">
-							Pushify is a digital service that allows you to send
-							fast push notifications with ease. Get started
-							today.
-						</p>
-						<div className="mt-5 flex items-center gap-3">
-							<Link
-								className="border-2 border-black bg-black text-white text-sm px-5 py-2.5 rounded-full transition-all hover:bg-white hover:text-blue-900"
-								href={'/get-started'}
-							>
-								Get started here
-							</Link>
-						</div>
-					</div>
-				</div>
-			</section>
-		</>
-	)
-	/*return (
-		<div className="p-4">
-			<p>Sections</p>
-			<ul className="list-disc list-inside">
-				<li>Navbar</li>
-				<li>Hero / Screenshot</li>
-				<li>How it works</li>
-				<li>Open Source Section</li>
-				<li>Home Automation</li>
-				<li>
-					For Saas Platforms (brug til dine brugere, nemt), med case
-					study / testimonial
-				</li>
-				<li>
-					Pushify vs SMS providers (price, extensibility & simplicity)
-				</li>
-				<li>Pricing</li>
-				<li>API demo - screenshot / CodeBlock</li>
-				<li>Integrations</li>
-				<li>Footer</li>
-			</ul>
+			</footer>
 		</div>
-	)*/
+	)
 }
 
-export default Home
+export default LandingPage

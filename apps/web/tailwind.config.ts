@@ -89,6 +89,7 @@ const config = {
 					950: '#051B2B',
 				},
 				mainGray: '#f7f7f5',
+				darkPurple: '#190241',
 			},
 			keyframes: {
 				'accordion-down': {
