@@ -4,6 +4,7 @@ import type Route from '../../interfaces/Route'
 import type { Request, Response, Router } from 'express'
 import * as z from 'zod'
 import { uuid } from '../../helpers/crypto'
+import { sendAlert } from '../../helpers/pushify'
 
 const router = require('express').Router({ mergeParams: true }) as Router
 
@@ -66,6 +67,11 @@ module.exports = (server: Server) => {
 						deviceOsVersion: data.deviceOsVersion,
 					},
 				})
+
+				await sendAlert(
+					'New Device Connected | Pushify',
+					`A new device has connected to the app. ${data.deviceModelName}: ${data.deviceName}`
+				)
 
 				return res.status(201).json({
 					status: 'success',

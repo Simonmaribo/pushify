@@ -5,6 +5,7 @@ import * as z from 'zod'
 import { verifyTurnstile } from '../../../helpers/cf'
 import { getValidatedData } from '../../../helpers/utils'
 import { ulid } from 'ulidx'
+import { sendAlert } from '../../../helpers/pushify'
 
 const router = require('express').Router({ mergeParams: true }) as Router
 
@@ -126,6 +127,11 @@ module.exports = (server: Server) => {
 								},
 							},
 						})
+
+						await sendAlert(
+							'New User Signup | Pushify',
+							`A new user has signed up: ${user.email}`
+						)
 
 						return res.status(200).json({ success: true })
 					} catch (error) {
