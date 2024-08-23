@@ -2,6 +2,7 @@
 
 If just there were a way to send push notifications to Customers without the need to create your own app. Enter [Pushify.net](https://pushify.net) - an easy to setup solution for exactly this issue.
 
+![Pushify App](https://i.imgur.com/tdGUMCM.png "Pushify App")
 
 ### Steps to use
 * Sign up to Pushify.net
