@@ -7,7 +7,7 @@ Used to send push notifications to devices via [Pushify.net](https://pushify.net
 #### Initialize Pushify instance
 
 ```js
-import Pushify from '@pushify/js'
+import { Pushify } from '@pushify/js'
 
 const pushify = new Pushify({
     key: "YOUR_API_KEY"

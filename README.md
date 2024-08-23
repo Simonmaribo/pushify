@@ -21,7 +21,7 @@ npm install @pushify/js
 #### Send a message
 ##### NodeJS (with Library)
 ```javascript
-import Pushify from '@pushify/js'
+import { Pushify } from '@pushify/js'
 
 const pushify = new Pushify({
     key: '[API_KEY]'

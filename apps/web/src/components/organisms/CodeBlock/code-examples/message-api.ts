@@ -15,7 +15,7 @@ function sendMessage(){
         })
 }`
 
-const NODE_LIB = `import Pushify from '@pushify/js'
+const NODE_LIB = `import { Pushify } from '@pushify/js'
 
 const pushify = new Pushify({
         key: '[API_KEY]'
