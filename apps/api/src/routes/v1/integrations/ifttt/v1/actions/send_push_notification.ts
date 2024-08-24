@@ -17,7 +17,11 @@ module.exports = (server: Server) => {
 					serviceKey !== process.env.IFTTT_SERVICE_KEY
 				) {
 					return res.status(401).json({
-						error: 'Unauthorized',
+						errors: [
+							{
+								message: 'Unauthorized',
+							},
+						],
 					})
 				}
 
