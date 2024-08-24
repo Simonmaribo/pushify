@@ -7,23 +7,20 @@ module.exports = (server: Server) => {
 	return {
 		router: () => {
 			router.get('/', async (req: Request, res: Response) => {
-				const {
-					'IFTTT-Channel-Key': channelKey,
-					'IFTTT-Service-Key': serviceKey,
-				} = req.headers
+				const channelKey = req.headers['IFTTT-Channel-Key']
+				const serviceKey = req.headers['IFTTT-Service-Key']
 				if (
 					!channelKey ||
 					!serviceKey ||
 					serviceKey !== process.env.IFTTT_SERVICE_KEY
 				) {
-					return res
-						.status(401)
-						.json({
-							error: 'Unauthorized',
-							channelKey,
-							serviceKey,
-							env: process.env.IFTTT_SERVICE_KEY,
-						})
+					return res.status(401).json({
+						error: 'Unauthorized',
+						channelKey,
+						serviceKey,
+						env: process.env.IFTTT_SERVICE_KEY,
+						headers: req.headers,
+					})
 				}
 
 				res.json({ message: 'System is active.' })

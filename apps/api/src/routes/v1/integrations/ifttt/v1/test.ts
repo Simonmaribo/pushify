@@ -7,10 +7,8 @@ module.exports = (server: Server) => {
 	return {
 		router: () => {
 			router.post('/setups', async (req: Request, res: Response) => {
-				const {
-					'IFTTT-Channel-Key': channelKey,
-					'IFTTT-Service-Key': serviceKey,
-				} = req.headers
+				const channelKey = req.headers['IFTTT-Channel-Key']
+				const serviceKey = req.headers['IFTTT-Service-Key']
 				if (
 					!channelKey ||
 					!serviceKey ||
