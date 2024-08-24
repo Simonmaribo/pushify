@@ -6,11 +6,18 @@ const router = require('express').Router({ mergeParams: true }) as Router
 module.exports = (server: Server) => {
 	return {
 		router: () => {
-			router.get('/status', async (req: Request, res: Response) => {
-				res.json({ message: 'System is active.' })
-			})
-
 			router.post('/setups', async (req: Request, res: Response) => {
+				const {
+					'IFTTT-Channel-Key': channelKey,
+					'IFTTT-Service-Key': serviceKey,
+				} = req.headers
+				if (
+					!channelKey ||
+					!serviceKey ||
+					serviceKey !== process.env.IFTTT_SERVICE_KEY
+				) {
+					return res.status(401).json({ message: 'Unauthorized' })
+				}
 				return res.json({
 					data: {
 						samples: {
