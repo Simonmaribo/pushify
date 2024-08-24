@@ -38,6 +38,8 @@ module.exports = (server: Server) => {
 									channel_id:
 										process.env.INTEGRATIONS_CHANNEL_ID,
 									title: '',
+									message: '',
+									url: '',
 								},
 							},
 						},
