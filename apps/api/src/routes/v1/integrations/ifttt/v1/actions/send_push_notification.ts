@@ -51,9 +51,11 @@ module.exports = (server: Server) => {
 				}
 
 				return res.json({
-					data: {
-						id: uuid(),
-					},
+					data: [
+						{
+							id: uuid(),
+						},
+					],
 				})
 			})
 
