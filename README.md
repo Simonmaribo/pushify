@@ -61,3 +61,10 @@ async function sendMessage(){
       })
 }
 ```
+
+
+### Todos
+- [ ] Batching of Push Notifications
+- [ ] Delete Channels
+- [ ] Delete Messages on Phone (Mark as Read)
+- [ ] API endpoints to create/delete/update channels
