@@ -11,7 +11,30 @@ module.exports = (server: Server) => {
 			})
 
 			router.post('/setups', async (req: Request, res: Response) => {
-				res.json({ message: 'System is active.' })
+				return res.json({
+					data: {
+						samples: {
+							actions: {
+								send_push_notification: {
+									api_key: '',
+									channel_id: '',
+									title: '',
+									message: '',
+									url: '',
+								},
+							},
+							actionRecordSkipping: {
+								send_push_notification: {
+									api_key: '',
+									channel_id: '',
+									title: '',
+									message: '',
+									url: '',
+								},
+							},
+						},
+					},
+				})
 			})
 
 			return router
