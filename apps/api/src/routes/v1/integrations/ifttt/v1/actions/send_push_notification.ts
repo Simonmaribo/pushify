@@ -46,7 +46,11 @@ module.exports = (server: Server) => {
 					const data = schema.parse(actionFields)
 				} catch (error) {
 					return res.status(400).json({
-						error: 'Action fields are invalid',
+						errors: [
+							{
+								message: 'Invalid input',
+							},
+						],
 					})
 				}
 
