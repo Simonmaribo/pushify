@@ -28,6 +28,12 @@ export default function LandingLayout({
 						</Link>
 						<div className="flex items-center">
 							<Link
+								href="/blog"
+								className="hidden sm:inline px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-main transition-all"
+							>
+								Blog
+							</Link>
+							<Link
 								href="#pricing"
 								className="hidden sm:inline px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-main transition-all"
 							>
