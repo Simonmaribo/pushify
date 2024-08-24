@@ -7,8 +7,8 @@ module.exports = (server: Server) => {
 	return {
 		router: () => {
 			router.get('/', async (req: Request, res: Response) => {
-				const channelKey = req.headers['tfttt-channel-key']
-				const serviceKey = req.headers['tfttt-service-key']
+				const channelKey = req.headers['ifttt-channel-key']
+				const serviceKey = req.headers['ifttt-service-key']
 				if (
 					!channelKey ||
 					!serviceKey ||
