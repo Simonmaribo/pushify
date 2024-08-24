@@ -23,20 +23,24 @@ module.exports = (server: Server) => {
 						samples: {
 							actions: {
 								send_push_notification: {
-									api_key: '',
-									channel_id: '',
-									title: '',
-									message: '',
-									url: '',
+									api_key: process.env.INTEGRATIONS_API_KEY,
+									channel_id:
+										process.env.INTEGRATIONS_CHANNEL_ID,
+									title: 'IFTTT Test',
+									message:
+										'This is a test notification from IFTTT',
+									url: 'https://google.com',
 								},
 							},
 							actionRecordSkipping: {
 								send_push_notification: {
-									api_key: '',
-									channel_id: '',
-									title: '',
-									message: '',
-									url: '',
+									api_key: process.env.INTEGRATIONS_API_KEY,
+									channel_id:
+										process.env.INTEGRATIONS_CHANNEL_ID,
+									title: 'IFTTT Test',
+									message:
+										'This is a test notification from IFTTT',
+									url: 'https://google.com',
 								},
 							},
 						},
