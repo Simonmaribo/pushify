@@ -28,7 +28,7 @@ module.exports = (server: Server) => {
 				const schema = z.object({
 					api_key: z.string(),
 					channel_id: z.string(),
-					title: z.string(),
+					title: z.string().min(1),
 					message: z
 						.string()
 						.optional()
