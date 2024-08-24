@@ -134,67 +134,79 @@ export default class PushController {
 	}
 
 	private async handleBatchMessages(data: ConsumeMessage) {
-		// When message is sent to queue the Message and MessageReceipients are created before.
-		const messages = JSON.parse(data.content.toString()) as PushMessage[]
+		try {
+			// When message is sent to queue the Message and MessageReceipients are created before.
+			const messages = JSON.parse(
+				data.content.toString()
+			) as PushMessage[]
 
-		console.log('Handling batch messages', messages)
+			console.log('Handling batch messages', messages)
 
-		// Create the ExpoPushMessage objects from the messages
-		const expoMessages: ExpoPushMessage[] = messages.map((message) => {
-			return {
-				to: message.pushTokens,
-				title: message?.message?.title || undefined,
-				body: message?.message?.body || undefined,
-				priority: 'high',
-				sound: {
-					name: 'default',
-					volume: 1,
-					critical: true,
-				},
-				data: message?.message?.data
-					? (message?.message?.data as JsonObject)
-					: undefined,
+			// Create the ExpoPushMessage objects from the messages
+			const expoMessages: ExpoPushMessage[] = messages.map((message) => {
+				return {
+					to: message.pushTokens,
+					title: message?.message?.title || undefined,
+					body: message?.message?.body || undefined,
+					priority: 'high',
+					sound: {
+						name: 'default',
+						volume: 1,
+						critical: true,
+					},
+					data: message?.message?.data
+						? (message?.message?.data as JsonObject)
+						: undefined,
+				}
+			})
+			const tickets = (await this.expo.sendPushNotificationsAsync(
+				expoMessages
+			)) as {
+				status: 'error' | 'ok'
+				id: string
+				message?: string
+				details?: object
+			}[]
+			let ticketData: {
+				ticketId?: string
+				ticketStatus: string
+				ticketMessage?: string
+				ticketDetails?: object
+				messageId: string
+			}[] = []
+
+			for (let i = 0; i < tickets.length; i++) {
+				const ticket = tickets[i]
+				const message = messages[i]
+
+				if (!message) {
+					console.error('Message not found')
+					continue
+				}
+
+				if (ticket.id) {
+					ticketData.push({
+						ticketId: ticket.id,
+						ticketStatus: ticket.status,
+						ticketMessage: ticket.message,
+						ticketDetails: ticket.details,
+						messageId: message.message.id,
+					})
+				} else {
+					console.error(
+						`Message with ID ${message.message.id} failed to send. Ticket: `,
+						ticket
+					)
+					// TODO: If ticket.details.error === 'DeviceNotRegistered' remove the device from the database
+				}
 			}
-		})
-		const tickets = (await this.expo.sendPushNotificationsAsync(
-			expoMessages
-		)) as {
-			status: 'error' | 'ok'
-			id: string
-			message?: string
-			details?: object
-		}[]
-		let ticketData: {
-			ticketId?: string
-			ticketStatus: string
-			ticketMessage?: string
-			ticketDetails?: object
-			messageId: string
-		}[] = []
 
-		for (let i = 0; i < tickets.length; i++) {
-			const ticket = tickets[i]
-			const message = messages[i]
-			if (ticket.id) {
-				ticketData.push({
-					ticketId: ticket.id,
-					ticketStatus: ticket.status,
-					ticketMessage: ticket.message,
-					ticketDetails: ticket.details,
-					messageId: message.message.id,
-				})
-			} else {
-				console.error(
-					`Message with ID ${message.message.id} failed to send. Ticket: `,
-					ticket
-				)
-				// TODO: If ticket.details.error === 'DeviceNotRegistered' remove the device from the database
-			}
+			await this.prisma.expoPushTicket.createMany({
+				data: ticketData,
+			})
+		} catch (error) {
+			console.error('Error handling batch messages', error)
 		}
-
-		await this.prisma.expoPushTicket.createMany({
-			data: ticketData,
-		})
 
 		// Acknowledge the message
 		this.batchesChannel.ack(data)
