@@ -1,3 +1,4 @@
+import { uuid } from '../../../../../../helpers/crypto'
 import type Server from '../../../../../../interfaces/Server'
 import type { Request, Response, Router } from 'express'
 import * as z from 'zod'
@@ -49,7 +50,11 @@ module.exports = (server: Server) => {
 					})
 				}
 
-				return res.json({ message: 'Push Message Sent' })
+				return res.json({
+					data: {
+						id: uuid(),
+					},
+				})
 			})
 
 			return router
