@@ -7,7 +7,7 @@ const router = require('express').Router({ mergeParams: true }) as Router
 module.exports = (server: Server) => {
 	return {
 		router: () => {
-			router.get('/', async (req: Request, res: Response) => {
+			router.post('/', async (req: Request, res: Response) => {
 				const channelKey = req.headers['ifttt-channel-key']
 				const serviceKey = req.headers['ifttt-service-key']
 				if (
