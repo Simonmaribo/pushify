@@ -9,12 +9,6 @@ module.exports = (server: Server) => {
 			router.get('/', async (req: Request, res: Response) => {
 				const channelKey = req.headers['ifttt-channel-key']
 				const serviceKey = req.headers['ifttt-service-key']
-				console.log(
-					'KEYS',
-					channelKey,
-					serviceKey,
-					process.env.IFTTT_SERVICE_KEY
-				)
 				if (
 					!channelKey ||
 					!serviceKey ||
@@ -22,10 +16,6 @@ module.exports = (server: Server) => {
 				) {
 					return res.status(401).json({
 						error: 'Unauthorized',
-						channelKey: channelKey,
-						serviceKey: serviceKey,
-						env: process.env.IFTTT_SERVICE_KEY,
-						headers: req.headers,
 					})
 				}
 

@@ -6,7 +6,7 @@ const router = require('express').Router({ mergeParams: true }) as Router
 module.exports = (server: Server) => {
 	return {
 		router: () => {
-			router.post('/setups', async (req: Request, res: Response) => {
+			router.post('/setup', async (req: Request, res: Response) => {
 				const channelKey = req.headers['ifttt-channel-key']
 				const serviceKey = req.headers['ifttt-service-key']
 				if (
@@ -14,7 +14,9 @@ module.exports = (server: Server) => {
 					!serviceKey ||
 					serviceKey !== process.env.IFTTT_SERVICE_KEY
 				) {
-					return res.status(401).json({ error: 'Unauthorized' })
+					return res.status(401).json({
+						error: 'Unauthorized',
+					})
 				}
 				return res.json({
 					data: {
