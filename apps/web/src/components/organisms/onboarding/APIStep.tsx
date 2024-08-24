@@ -22,11 +22,11 @@ export default function APIStep() {
 		setSubmitting(true)
 		await http
 			.post(`/workspace/${workspace?.id}/onboarding/generate-api-key`)
-			.then((res) => {
+			.then((res: any) => {
 				setAPIKey(res.data.key)
 				setStep(1)
 			})
-			.catch((err) => {
+			.catch((err: any) => {
 				toast.error(getError(err))
 				setSubmitting(false)
 			})

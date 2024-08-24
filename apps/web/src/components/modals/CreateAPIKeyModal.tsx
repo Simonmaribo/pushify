@@ -34,12 +34,12 @@ export default NiceModal.create(() => {
 		setSubmitting(true)
 		await http
 			.post(`/workspace/${workspace?.id}/api`, data)
-			.then((res) => {
+			.then((res: any) => {
 				if (res.data.key) {
 					setAPIKey(res.data.key)
 				}
 			})
-			.catch((error) => {
+			.catch((error: any) => {
 				toast.error(getError(error))
 				setSubmitting(false)
 			})

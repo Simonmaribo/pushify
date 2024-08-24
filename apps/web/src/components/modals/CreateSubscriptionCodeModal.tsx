@@ -19,12 +19,12 @@ export default NiceModal.create(({ channelId }: { channelId: string }) => {
 		setSubmitting(true)
 		await http
 			.post(`/workspace/${workspace?.id}/channels/${channelId}/code/new`)
-			.then((res) => {
+			.then((res: any) => {
 				if (res.data.code) {
 					setCode(res.data.code)
 				}
 			})
-			.catch((error) => {
+			.catch((error: any) => {
 				toast.error(getError(error))
 				setSubmitting(false)
 			})

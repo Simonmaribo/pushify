@@ -39,7 +39,7 @@ export default function SubscriptionCodeRow({
 				})
 				toast.success('Code removed successfully')
 			})
-			.catch((error) => toast.error(getError(error)))
+			.catch((error: any) => toast.error(getError(error)))
 			.finally(() => setSubmitting(false))
 	}
 
@@ -58,7 +58,7 @@ export default function SubscriptionCodeRow({
 					`Code ${type === 'disable' ? 'disabled' : 'enabled'} successfully`
 				)
 			})
-			.catch((error) => toast.error(getError(error)))
+			.catch((error: any) => toast.error(getError(error)))
 			.finally(() => setSubmitting(false))
 	}
 

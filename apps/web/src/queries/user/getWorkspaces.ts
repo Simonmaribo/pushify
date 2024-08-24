@@ -15,6 +15,6 @@ export default function getWorkspaces(): Promise<WorkspaceItem[]> {
 		await http
 			.get(`/user/workspaces`)
 			.then((response) => resolve(response.data))
-			.catch((error) => reject(getError(error)))
+			.catch((error: any) => reject(getError(error)))
 	})
 }

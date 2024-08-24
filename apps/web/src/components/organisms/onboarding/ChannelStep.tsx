@@ -55,7 +55,7 @@ export default function ChannelStep() {
 					setStep(2)
 				}
 			)
-			.catch((err) => {
+			.catch((err: any) => {
 				setSubmitting(false)
 				toast.error(getError(err))
 			})

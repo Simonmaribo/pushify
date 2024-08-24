@@ -19,7 +19,7 @@ export default function DoneStep() {
 			.then(() => {
 				window.location.reload()
 			})
-			.catch((error) => {
+			.catch((error: any) => {
 				toast.error(getError(error))
 				setSubmitting(false)
 			})

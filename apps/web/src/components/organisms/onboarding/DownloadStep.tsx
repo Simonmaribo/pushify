@@ -23,7 +23,7 @@ export default function DownloadStep() {
 					channelId: channel?.id,
 				},
 			})
-			.then((res) => {
+			.then((res: any) => {
 				setDeviceName(
 					res.data.device.deviceName ||
 						res.data.device.deviceModelName
@@ -31,7 +31,7 @@ export default function DownloadStep() {
 				setStep(3)
 				setSubmitting(false)
 			})
-			.catch((err) => {
+			.catch((err: any) => {
 				setSubmitting(false)
 				setError(getError(err))
 			})

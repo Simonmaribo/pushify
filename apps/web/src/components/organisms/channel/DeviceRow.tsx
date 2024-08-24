@@ -39,7 +39,7 @@ export default function DeviceRow({
 				})
 				toast.success('Device removed successfully')
 			})
-			.catch((error) => toast.error(getError(error)))
+			.catch((error: any) => toast.error(getError(error)))
 			.finally(() => setSubmitting(false))
 	}
 

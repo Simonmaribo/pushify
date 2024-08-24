@@ -58,13 +58,13 @@ export default function RegisterPage() {
 		setSubmitting(true)
 		await http
 			.post(`/user/auth/signup`, data)
-			.then((res) => {
+			.then((res: any) => {
 				if (res.status === 200) {
 					toast.success('Account created successfully.')
 					window.location.href = '/app'
 				}
 			})
-			.catch((error) => {
+			.catch((error: any) => {
 				form.setValue('password', '')
 				setError(getError(error))
 			})

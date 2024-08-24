@@ -55,7 +55,7 @@ export default function OnboardingPage() {
 			.then(() => {
 				window.location.reload()
 			})
-			.catch((error) => {
+			.catch((error: any) => {
 				toast.error(getError(error))
 			})
 	}

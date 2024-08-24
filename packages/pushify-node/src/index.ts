@@ -55,14 +55,14 @@ export class Pushify {
           ...data,
         }),
       })
-        .then((res) => {
+        .then((res: any) => {
           if (res.ok) {
             resolve(res.json());
           } else {
             reject(res.json());
           }
         })
-        .catch((error) => {
+        .catch((error: any) => {
           reject(getError(error));
         });
     });

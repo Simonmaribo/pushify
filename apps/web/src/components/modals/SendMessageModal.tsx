@@ -153,9 +153,9 @@ function SendMessageModal({
 					modal.remove()
 					resolve(data)
 				})
-				.catch((err) => {
+				.catch((error: any) => {
 					setSubmitting(false)
-					reject(getError(err))
+					reject(getError(error))
 				})
 		})
 

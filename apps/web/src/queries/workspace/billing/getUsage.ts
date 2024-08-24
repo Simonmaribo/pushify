@@ -16,6 +16,6 @@ export default function getUsage({
 		await http
 			.get(`/workspace/${workspaceId}/billing/usage`)
 			.then((response) => resolve(response.data))
-			.catch((error) => reject(getError(error)))
+			.catch((error: any) => reject(getError(error)))
 	})
 }

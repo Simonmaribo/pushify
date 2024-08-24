@@ -50,13 +50,13 @@ export default function LoginPage() {
 		setSubmitting(true)
 		await http
 			.post(`/user/auth/signin`, data)
-			.then((res) => {
+			.then((res: any) => {
 				if (res.status === 200) {
 					toast.success('Logged in successfully.')
 					window.location.href = '/app'
 				}
 			})
-			.catch((error) => {
+			.catch((error: any) => {
 				form.setValue('password', '')
 				setError(getError(error))
 			})

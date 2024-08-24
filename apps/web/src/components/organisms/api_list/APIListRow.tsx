@@ -32,7 +32,7 @@ export default function APIListRow({ item: key }: { item: APIListItem }) {
 					queryKey: ['api-keys'],
 				})
 			})
-			.catch((error) => {
+			.catch((error: any) => {
 				toast.error(getError(error))
 			})
 	}

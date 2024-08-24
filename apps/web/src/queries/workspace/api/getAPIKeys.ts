@@ -18,6 +18,6 @@ export default function getAPIKeys({
 		await http
 			.get(`/workspace/${workspaceId}/api`)
 			.then((response) => resolve(response.data))
-			.catch((error) => reject(getError(error)))
+			.catch((error: any) => reject(getError(error)))
 	})
 }

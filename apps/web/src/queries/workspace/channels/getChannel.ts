@@ -44,6 +44,6 @@ export default function getChannel({
 		await http
 			.get(`/workspace/${workspaceId}/channels/${channelId}`)
 			.then((response) => resolve(response.data))
-			.catch((error) => reject(getError(error)))
+			.catch((error: any) => reject(getError(error)))
 	})
 }

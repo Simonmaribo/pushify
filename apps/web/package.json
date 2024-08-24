@@ -34,6 +34,7 @@
     "@tailwindcss/typography": "^0.5.14",
     "@tanstack/react-query": "^5.25.0",
     "@toolbird/web": "^0.1.4",
+    "axios": "^1.7.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "colord": "^2.9.3",

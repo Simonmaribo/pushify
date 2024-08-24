@@ -67,7 +67,7 @@ export default function SendMessageStep() {
 				setSuccess(true)
 				setStep(4)
 			})
-			.catch((error) => {
+			.catch((error: any) => {
 				setSubmitting(false)
 				toast.error(error)
 			})
@@ -85,7 +85,7 @@ export default function SendMessageStep() {
 				setSuccess(true)
 				setStep(4)
 			})
-			.catch((err) => {
+			.catch((err: any) => {
 				setSubmitting(false)
 				toast.error(getError(err))
 			})*/

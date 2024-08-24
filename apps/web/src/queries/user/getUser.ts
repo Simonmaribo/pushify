@@ -15,6 +15,6 @@ export default function getUser(): Promise<User> {
 		await http
 			.get(`/user`)
 			.then((response) => resolve(response.data))
-			.catch((error) => reject(getError(error)))
+			.catch((error: any) => reject(getError(error)))
 	})
 }
