@@ -1,3 +1,4 @@
+import { validAPIKey } from '../../../../../../middlewares/APIMiddleware'
 import { uuid } from '../../../../../../helpers/crypto'
 import type Server from '../../../../../../interfaces/Server'
 import type { Request, Response, Router } from 'express'
@@ -47,7 +48,7 @@ module.exports = (server: Server) => {
 				const { actionFields } = req.body
 
 				try {
-					const data = schema.parse(actionFields)
+					var data = schema.parse(actionFields)
 				} catch (error) {
 					return res.status(400).json({
 						errors: [
@@ -58,6 +59,32 @@ module.exports = (server: Server) => {
 						],
 					})
 				}
+
+				const token = await validAPIKey(server, data.api_key)
+				if (!token) {
+					return res.status(401).json({
+						errors: [
+							{
+								message: 'Unauthorized',
+							},
+						],
+					})
+				}
+
+				await server.pushController.addMessage(
+					token.workspaceId as string,
+					[data.channel_id as string],
+					{
+						title:
+							data.title != null && data.title !== ''
+								? data.title
+								: 'Empty title',
+						body: data.message || undefined,
+						data: {
+							url: data.url || undefined,
+						},
+					}
+				)
 
 				return res.json({
 					data: [

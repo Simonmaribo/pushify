@@ -1,8 +1,6 @@
 import Server from '../interfaces/Server'
 import { NextFunction, Request, Response } from 'express'
 
-import jwt from 'jsonwebtoken'
-
 export function ensureAPIAuth(server: Server) {
 	return async (req: Request, res: Response, next: NextFunction) => {
 		const apiToken = req.headers.authorization
@@ -36,4 +34,32 @@ export function ensureAPIAuth(server: Server) {
 			})
 		}
 	}
+}
+
+export async function validAPIKey(server: Server, key: string) {
+	if (!key) return null
+
+	const token = await server.database.aPIKey.findFirst({
+		where: {
+			key,
+		},
+	})
+
+	if (!token) return null
+
+	if (
+		!token.lastUsed ||
+		token.lastUsed < new Date(Date.now() - 1000 * 60 * 60 * 24)
+	) {
+		await server.database.aPIKey.update({
+			where: {
+				id: token.id,
+			},
+			data: {
+				lastUsed: new Date(),
+			},
+		})
+	}
+
+	return token
 }
