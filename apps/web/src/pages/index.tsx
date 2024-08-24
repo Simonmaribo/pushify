@@ -86,8 +86,8 @@ const LandingPage = () => {
 							<span className="text-darkPurple font-medium">
 								notifications to your phone
 							</span>{' '}
-							using a simple REST API. Pushify can also include in
-							your{' '}
+							using a simple REST API. Pushify can also be
+							included in your{' '}
 							<span className="font-medium">SaaS Platform</span>{' '}
 							and send notifications to your users with the need
 							of publishing an App. The best thing?{' '}
