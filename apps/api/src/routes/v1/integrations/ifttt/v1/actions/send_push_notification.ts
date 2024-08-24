@@ -52,6 +52,7 @@ module.exports = (server: Server) => {
 					return res.status(400).json({
 						errors: [
 							{
+								status: 'SKIP',
 								message: 'Invalid input',
 							},
 						],
