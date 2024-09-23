@@ -28,7 +28,7 @@ export default class PushController {
 		this.prisma = prisma
 		this.expo = new Expo({
 			accessToken: process.env.EXPO_ACCESS_TOKEN,
-			useFcmV1: false,
+			useFcmV1: true,
 		})
 		this.connection = amqplib.connect([
 			`amqp://${process.env.RABBITMQ_USERNAME}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`,
